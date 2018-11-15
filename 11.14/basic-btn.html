@@ -4,6 +4,18 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>按钮样式</title>
 	<style type="text/css">
+		.disabled{
+			opacity: .4;
+			filter: alpha(opacity=40);
+			cursor: default;
+			-ms-pointer-events: none;
+			pointer-events: none;
+		}
+		.loading{
+			cursor: default;
+			pointer-events: none;
+			color: transparent !important;
+		}
 		.e-btn{
 			display: inline-block;
 			min-width: 50px;
@@ -22,14 +34,17 @@
 			-webkit-transition: border-color .15s, background-color .15s, opacity .15s;
 			transition: border-color .15s, background-color .15s, opacity .15s;
 		}
+		.e-btn.loading{
+			background-image: url('./loading.gif');
+		}
 		.e-btn:hover{
 			border-color: #ababaf;
 		}
 	</style>
 </head>
 <body>
-	<a class="e-btn">按钮a</a>
-	<span class="e-btn">按钮span</span>
+	<a class="e-btn disabled">按钮a</a>
+	<span class="e-btn loading">按钮span</span>
 	<div class="e-btn">按钮div</div>
 	<input class="e-btn" type="button" value="按钮input" />
 	<button class="e-btn">按钮button</button>
@@ -41,13 +56,16 @@
 			e-btn
 		3.状态样式
 			e-btn\e-btn-primary\e-btn-success\e-btn-warning
-			hover\loading\disabled
+			hover,active\loading\disabled
 		e-btn
 		e-btn.disabled
 		e-btn.loading
 		e-btn:hover
 		e-btn.disabled:hover
 		e-btn.loading:hover
+		e-btn:active
+		e-btn.disabled:active
+		e-btn.loading:active
 		
 		e-btn-primary
 		e-btn-primary.disabled
