@@ -3,6 +3,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>按钮样式</title>
+	<!-- https://segmentfault.com/q/1010000000190931 -->
 	<style type="text/css">
 		.disabled{
 			opacity: .4;
@@ -18,14 +19,17 @@
 		}
 		.e-btn{
 			display: inline-block;
+			*zoom:1;
+			*display: inline;
 			min-width: 50px;
 			border: 1px solid #d0d0d5;
 			border-radius: 4px;
 			padding: 9px 15px;
 			text-align: center;
-			line-height: 1.42858;
+			line-height: 20px;
 			font-size: 14px;
 			color: #4c5161;
+			vertical-align: top;
 			background-color: #fff;
 			background-repeat: no-repeat;
 			background-position: center;
@@ -34,22 +38,30 @@
 			-webkit-transition: border-color .15s, background-color .15s, opacity .15s;
 			transition: border-color .15s, background-color .15s, opacity .15s;
 		}
-		.e-btn.loading{
-			background-image: url('./loading.gif');
-		}
 		.e-btn:hover{
 			border-color: #ababaf;
+		}
+		.disabled:hover,
+		.loading:hover{
+			border-color: #d0d0d5;
+		}
+		.c{
+			vertical-align: bottom;
 		}
 	</style>
 </head>
 <body>
+	<div class="c">
 	<a class="e-btn disabled">按钮a</a>
 	<span class="e-btn loading">按钮span</span>
 	<div class="e-btn">按钮div</div>
 	<input class="e-btn" type="button" value="按钮input" />
 	<button class="e-btn">按钮button</button>
 	<label class="e-btn">按钮label</label>
+	</div>
 	<!-- 按钮样式
+		0.兼容性
+			ie7设置<input type="button" /> height = 20失效
 		1.基本元素：
 			a span div input button(label)
 		2.基本样式
@@ -57,12 +69,12 @@
 		3.状态样式
 			e-btn\e-btn-primary\e-btn-success\e-btn-warning
 			hover,active\loading\disabled
-		e-btn
-		e-btn.disabled
-		e-btn.loading
+		.e-btn
+		.disabled
+		.loading
 		e-btn:hover
-		e-btn.disabled:hover
-		e-btn.loading:hover
+		.disabled:hover
+		.loading:hover
 		e-btn:active
 		e-btn.disabled:active
 		e-btn.loading:active
