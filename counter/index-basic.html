@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>vuex 测试</title>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script> -->
+    <script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.js"></script>
+    <script src="https://cdn.bootcss.com/vuex/3.0.1/vuex.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <counter></counter>
+    </div>
+    <!-- built files will be auto injected -->
+    <script type="text/javascript">
+    const store = new Vuex.Store({
+        state: {
+            count: 0
+        },
+        mutations: {
+            increment(state, n) {
+                if (typeof n === 'number') { return state.count += n }
+                state.count++
+            }
+        },
+        actions: {
+            asyncincrement(context) {
+                return new Promise(function(resolve,reject){
+                    window.setTimeout(function(){
+                        resolve('success');
+                    },3000);
+                })
+                .then(function(data){
+                    context.commit('increment',10)
+                });
+            }
+        }
+    })
+    /*
+    测试
+    store.commit('increment')
+    console.log(store.state.count)
+    */
+    const Counter = {
+        template: `
+            <div>
+                {{ count }}
+                <button v-on:click="increment">增加</button>
+                <button v-on:click="asyncincrement">异步增加</button>
+            </div>
+        `,
+        computed: {
+            ...Vuex.mapState(['count']),
+
+        },
+        methods: {
+            ...Vuex.mapMutations(['increment']),
+            ...Vuex.mapActions(['asyncincrement'])/*
+            asyncincrement(){
+                this.$store.dispatch('increment');
+            }*/
+        }
+        /*{
+                    increment() {
+                        this.$store.commit('increment',10)
+                    }
+                }*/
+    }
+    const app = new Vue({
+        el: '#app',
+        store,
+        components: { Counter }
+    })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>组件基础</title>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script> -->
+    <script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.js"></script>
+    <script src="https://cdn.bootcss.com/vuex/3.0.1/vuex.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div v-bind:style="{ fontSize: postFontSize + 'px' }">
+            <blog-post v-bind:post-font="postFontSize" post-text="single data flows" v-for="post in posts" v-bind:key="post.id" v-bind:post="post" v-on:enlarge-text="postFontSize += 1">{{author}}</blog-post>
+        </div>
+    </div>
+    <div id="app2">
+        <div>
+            <p>{{searchText}}</p>
+            <custom-input v-model="searchText"></custom-input>
+        </div>
+    </div>
+    <!-- built files will be auto injected -->
+    <script type="text/javascript">
+    // 定义一个名为 button-counter 的新组件
+    Vue.component('blog-post', {
+        data() {
+            return {
+                size: this.postFont
+            }
+        },
+        props: ['post', 'postText', 'postFont'],
+        template: `
+            <div class="blog-post">
+              <h3><slot></slot>-{{ post.title }}-{{ formatText }}</h3>
+              <button v-on:click="$emit('enlarge-text')">
+                Enlarge text
+              </button>
+              <button v-on:click="enlargeContent">
+                Enlarge content size
+              </button>
+              <div v-bind:style="{ fontSize: size + 'px' }" v-html="post.content"></div>
+            </div>
+          `,
+        computed: {
+            formatText() {
+                return this.postText.trim().toUpperCase()
+            }
+        },
+        methods: {
+            enlargeContent() {
+                this.size += 2
+            }
+        }
+    })
+    Vue.component('custom-input', {
+        props: ['value'],
+        template: `
+            <input
+              v-bind:value="value"
+              v-on:input="$emit('input', $event.target.value)"
+            >
+          `
+    })
+    new Vue({
+        el: '#app',
+        data: {
+            author: 'thomas.yang',
+            postFontSize: 14,
+            posts: [{
+                    id: 1,
+                    title: 'My journey with Vue',
+                    content: '<p>My journey with Vue</p>'
+                },
+                {
+                    id: 2,
+                    title: 'Blogging with Vue',
+                    content: '<p>Blogging with Vue</p>'
+                },
+                {
+                    id: 3,
+                    title: 'Why Vue is so fun',
+                    content: '<p>Why Vue is so fun</p>'
+                }
+            ]
+        }
+    })
+    var app2 = new Vue({
+        el: '#app2',
+        data: { searchText: '' }
+    })
+    </script>
+</body>
+
+</html>

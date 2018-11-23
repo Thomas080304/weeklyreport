@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>vuex</title>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script> -->
+    <script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.js"></script>
+    <script src="https://cdn.bootcss.com/vuex/3.0.1/vuex.js"></script>
+</head>
+
+<body>
+    <!-- 问题：
+        1.如何在组件(组件嵌套)
+        2.根组件中使用store
+    -->
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+    <script type="text/javascript">
+    const store = new Vuex.Store({
+        state: {
+            count: 0
+        },
+        mutations: {
+            increment(state) {
+                state.count++
+            }
+        }
+    })
+
+    new Vue({
+        el:'#app',
+        template: `
+            <div>
+                <span>{{ count }}</span>
+                <button v-on:click="increment">增加</button>
+            </div>
+          `,
+        computed:{
+            count(){
+                return store.state.count
+            }
+        },
+        methods: {
+            increment() {
+                store.commit('increment')
+            }
+        }
+    })
+    </script>
+</body>
+    <!-- 在根上使用store 
+        1.先删除根上的data属性,从store中获取数据
+        2.在computed注册属性，并从store中获取数据
+        3.在methods注册方法，并调用store.commit('increment')
+    -->
+</html>

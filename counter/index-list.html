@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>vuex 测试</title>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script> -->
+    <script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.js"></script>
+    <script src="https://cdn.bootcss.com/vuex/3.0.1/vuex.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <todos />
+    </div>
+    <!-- built files will be auto injected -->
+    <script type="text/javascript">
+    const store = new Vuex.Store({
+        state: {
+            todos: [
+                { id: 1, text: 'text-1', done: true },
+                { id: 2, text: 'text-2', done: false },
+                { id: 3, text: 'text-3', done: false }
+            ]
+        },
+        getters: {
+            doneTodos: (state,getters) => (done) => {
+                return state.todos.filter(todo => todo.done == done)
+            },
+            totals: state => state.todos.length
+        }
+    })
+    /*
+    测试
+    store.commit('increment')
+    console.log(store.state.count)
+    */
+    const Todos = {
+        data: function() {
+            return {
+                done: true
+            }
+        },
+        template: `
+            <div>
+                <span v-if="totals > 0">共{{totals}}条</span>
+                <ul>
+                    <li v-for="todo in doneTodos">
+                        内容: {{ todo.text }}
+                        状态: {{todo.done?'完成':'未完成'}}
+                    </li>
+                </ul>
+                <button v-on:click="toggleStatus">查看{{done?'未完成':'完成'}}状态</button>
+            </div>
+        `,
+        computed: {
+            ...Vuex.mapState(['todos']),
+            ...Vuex.mapGetters(['totals']),
+            doneTodos() {
+                return this.$store.getters.doneTodos(this.done)
+            }
+        },
+        methods: {
+            toggleStatus() {
+                this.done = !this.done;
+            }
+        }
+    }
+    const app = new Vue({
+        el: '#app',
+        store,
+        components: { Todos }
+    })
+    </script>
+</body>
+
+</html>

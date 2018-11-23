@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>vuex</title>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script> -->
+    <script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.js"></script>
+    <script src="https://cdn.bootcss.com/vuex/3.0.1/vuex.js"></script>
+</head>
+
+<body>
+    <!-- 问题：
+        1.如何在组件(组件嵌套)
+        2.根组件中使用store
+    -->
+    <div id="app">
+        <countor></countor>
+        <countor></countor>
+        <countor />
+        <countor></countor>
+    </div>
+    <!-- built files will be auto injected -->
+    <script type="text/javascript">
+    const store = new Vuex.Store({
+        state: {
+            count: 0
+        },
+        mutations: {
+            increment(state) {
+                state.count++
+            }
+        }
+    })
+    const Countor = {
+        data() {
+            return {
+                local: 1
+            }
+        },
+        template: `
+            <div>
+                <span>{{ count }}</span>
+                <span>{{ countcm }}</span>
+                <button v-on:click="increment">增加{{ localCount }}</button>
+            </div>
+          `,
+        computed: {
+            ...Vuex.mapState({
+                countcm: state => state.count,//从store中map count
+                localCount(state) {//本地状态和store状态混合
+                    return state.count + this.local
+                }
+            }),
+            count() {
+                //从父级传过来的store
+                return this.$store.state.count
+            }
+        },
+        methods: {
+            increment() {
+                this.$store.commit('increment')
+            }
+        }
+    };
+    //局部注册注册组件
+    //父级传递store给子组件，子组件中使用this.$store调用
+    new Vue({
+        el: '#app',
+        store,
+        components: { Countor }
+    })
+    </script>
+</body>
+<!-- 在根上使用store 
+-->
+
+</html>
