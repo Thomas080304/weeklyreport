@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>vuex 测试</title>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script> -->
+    <script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.js"></script>
+    <script src="https://cdn.bootcss.com/vuex/3.0.1/vuex.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <todos />
+    </div>
+    <!-- built files will be auto injected -->
+    <script type="text/javascript">
+    /*
+    	在组件中使用getters,store中state的计算属性,
+    	store中定义了getters,可以通过store.getters访问
+    */
+    const store = new Vuex.Store({
+        state: {
+            todos: [
+                { id: 1, text: 'text-1', done: true },
+                { id: 2, text: 'text-2', done: false },
+                { id: 3, text: 'text-3', done: false }
+            ]
+        },
+        getters: {
+        	//计算属性,会有缓存
+            doneTodos: (state,getters) => (done) => {
+            	//全部的state,全部的getters
+                return state.todos.filter(todo => todo.done == done)
+            },
+            totals: (state, getters) => state.todos.length
+        }
+    })
+    const Todos = {
+        data: function() {
+            return {
+                done: true
+            }
+        },
+        template: `
+            <div>
+                <span v-if="totals > 0">共{{totals}}条</span>
+                <ul>
+                    <li v-for="todo in doneTodos">
+                        内容: {{ todo.text }}
+                        状态: {{todo.done?'完成':'未完成'}}
+                    </li>
+                </ul>
+                <button v-on:click="toggleStatus">查看{{done?'未完成':'完成'}}状态</button>
+            </div>
+        `,
+        computed: {
+        	//通过map函数方法
+            ...Vuex.mapState(['todos']),
+            ...Vuex.mapGetters(['totals']),
+            doneTodos() {
+            	//在computed中使用getters
+                return this.$store.getters.doneTodos(this.done)
+            }
+        },
+        methods: {
+            toggleStatus() {
+                this.done = !this.done;
+            }
+        }
+    }
+    const app = new Vue({
+        el: '#app',
+        store,
+        components: { Todos }
+    })
+    </script>
+</body>
+
+</html>

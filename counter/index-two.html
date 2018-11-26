@@ -11,10 +11,6 @@
 </head>
 
 <body>
-    <!-- 问题：
-        1.如何在组件(组件嵌套)
-        2.根组件中使用store
-    -->
     <div id="app"></div>
     <!-- built files will be auto injected -->
     <script type="text/javascript">
@@ -28,7 +24,10 @@
             }
         }
     })
-
+    /*
+        如何在组件中使用store,即使用store提供的
+        state,getter,commit,dispatch
+    */
     new Vue({
         el:'#app',
         template: `
