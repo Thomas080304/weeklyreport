@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>checkit</title>
+
+</head>
+<body>
+
+    <script src="../lib/maria/maria.js"></script>
+    <script src="../lib/aristocrat/aristocrat.js"></script>
+
+    <script src="js/namespace.js"></script>
+    <script src="js/util.js"></script>
+    <script src="js/models/TodoModel.js"></script>
+    <script type="text/javascript">
+    	var todoModel = new checkit.TodoModel();
+    	console.log(todoModel.getContent());
+    	console.log(todoModel.isDone());
+    	todoModel.setContent('test drive Ferrari');
+    	console.log(todoModel.getContent());
+    </script>
+</body>
+</html>
