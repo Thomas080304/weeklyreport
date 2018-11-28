@@ -10,11 +10,17 @@
     <script src="js/util.js"></script>
     <script src="js/models/TodoModel.js"></script>
     <script type="text/javascript">
-    	var todoModel = new checkit.TodoModel();
-    	console.log(todoModel.getContent());
-    	console.log(todoModel.isDone());
-    	todoModel.setContent('test drive Ferrari');
-    	console.log(todoModel.getContent());
+        var alpha = new maria.Model();
+        alpha.name = 'Alpha';
+        var beta = new maria.Model();
+        beta.name = 'Beta';
+        var setModel = new maria.SetModel(alpha, beta);
+        var view = {
+            update: function(evt) {
+                alert(setModel.size + ' element(s) in the set.');
+            }
+        };
+        maria.on(setModel, 'change', view, 'update');
     </script>
 </body>
 </html>
