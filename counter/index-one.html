@@ -13,7 +13,7 @@
 <body>
     <div id="app"></div>
     <script type="text/javascript">
-    /*?---vuex是什么*/
+    /*?---vuex是什么
     const store = new Vuex.Store({
         state: {
             count: 0
@@ -30,7 +30,7 @@
     store.commit('increment');
     store.commit('increment');
     store.commit('increment');
-    console.log(store);
+    console.log(store);*/
     /*vuex 是一个对象 api如下：
       commit dispatch state getters
     */
@@ -74,7 +74,7 @@
         },
         mutations: { 
             changeB(state){
-                this.b = 'moduleA++';
+                this.b = 'moduleB++';
             }
         },
         actions: { 
@@ -86,17 +86,19 @@
                 });
             }
         },
+		modules:{moduleA},
         getters: { 
             b(state){
                 return state.b;
             }
         }
     }
+	debugger
     const store2 = new Vuex.Store({
         state: {
             count: 0
         },
-        modules:{moduleA,moduleB},
+        modules:{moduleB},
         mutations: {
             increment(state) {
                 state.count++
@@ -112,7 +114,6 @@
             }
         },
     })
-    debugger;
     console.log(store2);
     </script>
 </body>

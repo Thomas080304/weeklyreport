@@ -1,21 +1,40 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>morden</title>
-<link rel="stylesheet" type="text/css" href="./css/common/reset.css" />
-<link rel="stylesheet" type="text/css" href="./css/common/lib.css" />
-<link rel="stylesheet" type="text/css" href="./css/common/ui.css">
-<script type="text/javascript" src="./mvc.js"></script>
-</head>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>morden</title>
+    <link rel="stylesheet" type="text/css" href="./css/common/ui.css" />
+    <script type="text/javascript" src="./js/plugin/html5shiv.min.js"></script>
+    <script type="text/javascript" src="./js/plugin/jquery.js"></script>
+    <script type="text/javascript" src="./js/plugin/sea.js"></script>
+    <script type="text/javascript">
+      seajs
+        .config({
+          base: './js',
+          alias: {
+            jquery: 'plugin/jquery'
+          }
+        })
+        .use(['common/ui_comp'], function(modules) {
+			//
+          $('#alertDialog').on('click', function() {
+            new modules.Dialog().alert('操作成功！', {
+              type: 'success'
+            });
+		  });
+		  
+		  //
+        });
+    </script>
+  </head>
 
-<body>
-	<select>
-		<option value="1">1</option>
-		<option value="1">1</option>
-		<option value="1">1</option>
-		<option value="1">1</option>
-		<option value="1">1</option>
-	</select>
-</body>
+  <body>
+    <a
+      href="javascript:"
+      id="alertDialog"
+      class="ui-button ui-button-success"
+      role="button"
+      >alert成功提示</a
+    >
+  </body>
 </html>
