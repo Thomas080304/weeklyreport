@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>弹框</title>
+	<style>
+		.ui-select{
+            display: inline-block;
+            width: 150px;
+            position: relative;
+            height: 40px;
+            line-height: 20px;
+        }
+        .ui-select-button{
+            display: block;
+            padding: 9px 27px 9px 12px;
+            height: 20px;
+            background: #ccc;
+        }
+        .ui-select-datalist{
+            position: absolute;
+            background: red;
+            left: 0;
+            right: 0;
+        }
+        .ui-select-datalist-li{
+            display: block;
+            padding: 9px 12px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            text-decoration: none;
+        }
+	</style>
+</head>
+<body style="height:3000px">
+	<div role="combobox" class="ui-select" width="150px">
+        <a href="javascript:;" class="ui-select-button">
+            <span class="ui-select-text">选项一</span>
+            <i class="ui-select-icon"></i>
+        </a>
+        <div class="ui-select-datalist">
+            <a href="javascript:;" class="ui-select-datalist-li">选项1</a>
+            <a href="javascript:;" class="ui-select-datalist-li">如果选项很长，而下拉框很短怎么办</a>
+        </div>
+    </div>
+</body>
+</html>
