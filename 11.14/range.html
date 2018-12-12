@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Range</title>
+	<style>
+		.ui-range-input{
+			height: 20px;
+			border: 1px solid red;
+			width: 900px;
+		}
+		.ui-range{
+			display: inline;
+			position: absolute;
+			visibility: visible;
+		}
+		.ui-range-track{
+			height: 4px;
+			background-color: #ccc;
+			margin-top: 8px;
+			border-left: 189px solid blue;
+		}
+		.ui-range-thumb{
+			position: absolute;
+			height: 16px;
+			width: 16px;
+			border-radius: 8px;
+			background: yellow;
+			margin: -7px 0 0 -9px;
+		}
+		.ui-tips-x{
+			position: absolute;
+			z-index: 99;
+			text-align: center;
+			border: 1px solid purple;
+		}
+		.ui-tips-reverse{
+			top: 18px;
+			left: 170px;
+			margin-top: 10px;
+		}
+		.ui-tips-before{
+			padding: 6px 10px;
+		}
+		.ui-tips-x .ui-tips-before{
+			display: block;
+		}
+		.ui-tips-after{
+
+		}
+	</style>
+</head>
+<body style="height:3000px">
+	<div class="ui-range-input ui-range">
+		<div class="ui-range-track">
+			<a class="ui-range-thumb reverse"></a>
+		</div>
+	</div>
+	<div class="ui-tips-x ui-tips-reverse">
+		<span class="ui-tips-before">30%</span>
+		<i class="ui-tips-after"></i>
+	</div>
+</body>
+</html>
