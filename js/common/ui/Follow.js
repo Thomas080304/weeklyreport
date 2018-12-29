@@ -38,6 +38,7 @@
 		var params = $.extend({}, defaults, options || {});
 		
 		return $(this).each(function() {
+			//target 是tips
 			var target = $(this);
 			
 			if (trigger.length == 0) {

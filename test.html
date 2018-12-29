@@ -24,37 +24,62 @@
 		  });
 		  
 		  //
-			new modules.Tips($('#spTips'), {
-				content: '点击此按钮会注销你的账户，您的目前的操作都不能执行，直到你重新登录',
-				align: 'right'
-			}); 
-		 //
-			new modules.DropPanel($('#trigger'),{
-				title: '删除评论',
-				content: '删除后，您的粉丝在文章中将无法看到该评论。',
-				buttons: [{value: '删除'}, {}]
-			});
-		 //
-		  
         });
     </script>
+	
+	<style type="text/css">
+		body{
+			margin: 0;
+		}
+		.header{
+			height: 45px;
+			background-color: green;
+			position: fixed;
+			top: 0;
+			right: 0;
+			left: 0;
+			z-index: 10;
+		}
+		.main{
+			padding-top: 45px;
+			width:1200px;
+			margin: auto;
+			position:relative;
+		}
+		.aside{
+			position: fixed;
+			width: 275px;
+			top: 45px;
+			bottom: 30px;
+			background-color: red;
+		}
+		.main-wrap{
+			margin-left: 275px;
+			overflow:hidden;
+			border: 1px solid black;
+		}
+		.footer{
+			height: 30px;
+			background-color: #ccc;
+			position:fixed;
+			right:0;
+			bottom:0;
+			left:0;
+		}
+	</style>
+	
   </head>
 
   <body>
-  
-	
-	<a
-      href="javascript:"
-      id="alertDialog"
-      class="ui-button ui-button-success"
-      role="button"
-      >alert成功提示</a
-    >
-	
-	<div style="position:relative; top: 100px; left: 300px;">
-		<i id="spTips">tipsssssss</i>
+    <div class="header">header</div>
+	<div class="main">
+		<div class="aside">
+			aside
+		</div>
+		<div class="main-wrap">
+			main
+		</div>
 	</div>
-	
-	<p style="padding-left:200px;"><button id="trigger" data-target="id_9471460322077878" aria-expanded="false">点击我</button></p>
+	<div class="footer">footer</div>
   </body>
 </html>
