@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>弹框</title>
+	<style>
+		.container{
+			position: absolute;
+			width: 300px;
+			height: 300px;
+			border: 10px solid #ccc;
+			padding: 20px;
+			left:0;
+			right: 0;
+			margin: auto;
+			overflow: auto;
+		}
+		.scrol-inner{
+			height: 500px;
+			outline: 1px solid red;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload = function(){
+			var wrap = document.getElementById('wrap');
+			var client_w = wrap.clientWidth;
+			var client_h = wrap.clientHeight;
+			//alert(`${client_w},${client_h}`);
+			//client包含padding的尺寸，不包含滚动条的尺寸
+			//1.没有滚动条: 340,340
+			//2.有滚动条:323(滚动条宽度:17),340
+			var scroll_t = wrap.scrollHeight;
+			var scroll_l = wrap.scrollWidth;
+			alert(`${wrap.scrollTop}`)
+			alert(`${scroll_t},${scroll_l}`);
+		}
+		
+		function getPagearea(){
+	　　　　if (document.compatMode == "BackCompat"){
+	　　　　　　return {
+	　　　　　　　　width: Math.max(document.body.scrollWidth,
+	　　　　　　　　　　　　　　　　document.body.clientWidth),
+	　　　　　　　　height: Math.max(document.body.scrollHeight,
+	　　　　　　　　　　　　　　　　document.body.clientHeight)
+	　　　　　　}
+	　　　　} else {
+	　　　　　　return {
+	　　　　　　　　width: Math.max(document.documentElement.scrollWidth,
+	　　　　　　　　　　　　　　　　document.documentElement.clientWidth),
+	　　　　　　　　height: Math.max(document.documentElement.scrollHeight,
+	　　　　　　　　　　　　　　　　document.documentElement.clientHeight)
+	　　　　　　}
+	　　　　}
+	　　}
+	</script>
+</head>
+<body >
+	<div id="wrap" class="container">
+		<div class="scrol-inner">
+			
+			
+		</div>
+	</div>
+</body>
+</html>
