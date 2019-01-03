@@ -1,0 +1,244 @@
+.main-inner{
+    padding: 18px  28px 3px;
+}
+.main-row{
+    margin-bottom: 15px;
+}
+/**
+    statistics 统计信息
+ */
+.statistics-item{
+    float: left;
+	width: 33.3%;
+}
+.statistics-innter{
+    height: 116px;
+    padding: 15px 25px 20px 10px;
+    box-sizing: border-box;
+    color: #fff;
+}
+.statistics-title{
+    font-size: 18px;
+    font-weight: bold;
+}
+.statistics-text{
+    text-align: right;
+    font-size: 48px;
+}
+.first-statistics{
+    margin-right: 16px;
+    background-color: #ff9a2a;
+}
+.middle-statistics{
+    margin: 0 8px;
+    background-color: #7fbc39;
+}
+.last-statistics{
+    margin-left: 16px;
+    background-color: #fff;
+    color: #000;
+}
+.statistics-ul{
+    height: 100%;
+    width: 100%;
+}
+.statistics-li{
+    text-align: center;
+    height: 100%;
+    float: left;
+    width: 33.3%;
+}
+.statistics-label{
+    font-size: 12px;
+    margin-bottom: 30px;
+}
+.statistics-value{
+    font-size: 20px;
+} 
+/**
+    types 类型
+ */
+.row-types{
+    font-size: 0;
+    height: 50px;
+    line-height: 50px;
+    background-color: #fff;
+    overflow: hidden;
+}
+.types-item{
+    display: inline-block;
+    padding: 0 25px;
+    font-size: 14px;
+    cursor: pointer;
+    position: relative;
+    text-align: center;
+}
+.types-item::after{
+    content: '';
+    height: 3px;
+    background-color: transparent;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.types-item+.types-item{
+    border-left: 1px solid #ccc;
+}
+.type-selected::after{
+    background-color: #00b4cf;
+}
+.types-search{
+    position: relative;
+    display: inline-block;
+}
+.types-search .icon-search{
+    font-size: 20px;
+    position: absolute;
+    left: 5px;
+    top: 14px;
+    color: #999;
+}
+.types-search .types-input{
+    padding: 5px 10px 5px 30px;
+}
+.types-icons-wrap{
+    height: 0;
+    position: relative;
+}
+.types-icons{
+    position: absolute;
+    font-size: 20px;
+    top: -50px;
+    right: 24px;
+}
+.types-icons .icon-th-list,
+.types-icons .icon-th-card{
+    cursor: pointer;
+}
+.types-icons .icon-th-list{
+    margin-left: 20px;
+}
+.icon-selected{
+    color: #00b4cf;
+}
+/** 
+    os
+*/
+.row-os{
+    padding: 17px 19px 14px 14px;
+    background-color: #fff;
+}
+.os-wrap{
+    text-align: center;
+    vertical-align: middle;
+    float: left;
+}
+.os-wrap::after{
+    content: '';
+    height: 100%;
+    display: inline-block;
+    width: 0;
+    vertical-align: middle;
+}
+.os-img{
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    vertical-align: middle;
+    vertical-align: middle;
+}
+.os-main{
+    overflow: hidden;
+    padding-left: 24px;
+}
+.os-item{
+    padding:4px 7px 2px 9px;
+    margin-right: 10px;
+}
+.os-item i{
+    font-size: 16px;
+    margin-right: 13px;
+}
+.os-name{
+    padding-left: 0;
+}
+.os-name .os-text{
+    color: #00b4cf;
+}
+.os-status{
+    color: #fff;;
+}
+.building-status{
+    background-color: #ff9a2a;
+}
+.idle-status{
+    background-color: #7fbc39;
+}
+.os-action-wrap{
+    text-align: right;
+}
+.os-actions-left{
+    float: left;
+    text-align: left;
+    font-size: 0;
+}
+.os-add-action{
+    width: 24px;
+    height: 24px;
+    background-color: #00b4cf;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+.os-add-action .icon-plus{
+    color: #fff;
+    font-size: 24px;
+}
+.os-block{
+    padding: 7px 26px 8px 10px;
+    position: relative;
+    font-size: 14px;
+    vertical-align: middle;
+    margin-right: 10px;
+    background-color: #efefef;
+}
+.os-block i{
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    cursor: pointer;
+}
+.os-action-btn{
+    padding: 8px 17px 5px 38px;
+    position: relative;
+    background-color: #00b4cf;
+    color: #fff;
+}
+.os-action-btn .icon-deny{
+    position: absolute;
+    left: 10px;
+    font-size: 20px;
+    top: 5px;
+}
+.windows-os{
+    background: url('../images/windows.png') center center no-repeat;
+    background-size: 100%;
+}
+.centos-os{
+    background: url('../images/cent_os.png') center center no-repeat;
+    background-size: 100%;
+}
+.debian-os{
+    background: url('../images/debin.png') center center no-repeat;
+    background-size: 100%;
+}
+.suse-os{
+    background: url('../images/suse.png') center center no-repeat;
+    background-size: 100%;
+}
+.ubuntu-os{
+    background: url('../images/ubuntu.png') center center no-repeat;
+    background-size: 100%;
+}

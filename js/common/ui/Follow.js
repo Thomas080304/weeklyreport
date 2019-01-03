@@ -295,7 +295,7 @@
 				// 偏移处理
 				if (align == '7-5' || align == '5-7') {
 					// 左右是否超出
-					if (tar_l - sl < 0.5 * winWidth) {
+					if (tar_l - sl < 0/*0.5 * winWidth*/) {
 						// 左半边，判断左边缘
 						if (tar_l - sl < 0) {
 							tar_l = sl;
@@ -305,7 +305,7 @@
 					}
 				} else {
 					// 上下是否超出
-					if (tar_t - st < 0.5 * winHeight) {
+					if (tar_t - st < 0 /*0.5 * winHeight*/) {
 						// 左半边，判断左边缘
 						if (tar_t - st < 0) {
 							tar_t = st;

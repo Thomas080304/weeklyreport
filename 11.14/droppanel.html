@@ -8,6 +8,7 @@
 			position: absolute;
 			padding: 20px 10px;
 			border: 1px solid red;
+			height:300px;
 		}
 		.ui-dropanel-title{
 			margin-top: -2px;
@@ -35,28 +36,86 @@
 	<script type="text/javascript" src="../js/plugin/jquery.js"></script>
 	<script type="text/javascript">
 		window.onload = function(){
-			var $trigger = $('#trigger');
-			console.log($trigger);
-			calcPos()
+			var btn = $('#trigger');
+			var dialog = $('#id_33105496192158435');
+			btn.on('click',function(){
+				var pos = calcPos(dialog,btn,'bottom')
+				if(isAdjustedBottom(pos)){
+					pos = calcPos(dialog,btn,'top')
+				}				
+				dialog.css({
+					position:'absolute',
+					top:pos.top,
+					left:pos.left
+				})
+			});
 		}
 		
-		function calcPos(target,trigger){
-			var trigger_pos = trigger.position();
-			var trigger_h = trigger.outerHeight();
-			var trigger_w = trigger.outerWidth();
-			var trigger_l = trigger_pos.left;
-			var trigger_t = trigger_pos.top;
-			
-			var target_pos = target.position();
-			var target_h = target.outerHeight();
-			var target_w = target.outerWidth();
-			var target_l = target_pos.left;
-			var target_t = target_pos.top;
-			
+		function isAdjustedBottom(pos){
+			//trigger_top+trigger_h+target_h
+			var winH = $(window).height();
+			return pos.top+pos.height > winH;
+		}
+		function calcDirection(target,trigger){
+			//btn相对于视口的偏移
+			var trigger_pos = trigger.offset();
+			//包含border在内的宽度
+			var trigger_w   = trigger.outerWidth();
+			//包含border在内的高度
+			var trigger_h   = trigger.outerHeight();
+			//距离视口左边的距离
+			var trigger_l   = trigger_pos.left;
+			//距离视口上面的距离
+			var trigger_t   = trigger_pos.top;
+			//弹框的宽度
+			var target_w    = target.outerWidth();
+			var target_h    = target.outerHeight();
 			
 			
 			
 		}
+		
+		
+		function calcPos(target,trigger,align){
+			//btn相对于视口的偏移
+			var trigger_pos = trigger.offset();
+			//包含border在内的宽度
+			var trigger_w   = trigger.outerWidth();
+			//包含border在内的高度
+			var trigger_h   = trigger.outerHeight();
+			//距离视口左边的距离
+			var trigger_l   = trigger_pos.left;
+			//距离视口上面的距离
+			var trigger_t   = trigger_pos.top;
+			//弹框的宽度
+			var target_w    = target.outerWidth();
+			var target_h    = target.outerHeight();
+			
+			var target_l,
+				target_t;
+			switch(align){
+				case 'top':
+					target_t = trigger_t-target_h;
+					target_l = trigger_l-(target_w-trigger_w)/2;
+					break;
+				case 'left':
+					target_t = 0;
+					target_l = 0;
+					break;
+				case 'right':
+					target_t = 0;
+					target_l = 0;
+					break;
+				default:
+					//bottom
+					target_t = trigger_t+trigger_h;
+					target_l = trigger_l-(target_w-trigger_w)/2;
+					break;
+			}
+			return {left:target_l,top:target_t,width:target_w,height:target_h}
+		}
+		
+		
 		
 	</script>
 </head>

@@ -1,0 +1,40 @@
+.header-inner{
+    line-height: 70px;
+    vertical-align: middle;
+    text-align: center;
+    width: 1200px;
+    margin: auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+.header-nav{
+    float: left;
+    color: #000;
+}
+.header-nav i{
+    font-size: 20px;
+}
+.header-logo{
+    display: inline-block;
+    height: 70px;
+    width: 96px;
+    text-align: center;
+    vertical-align: middle;
+}
+.header-logo svg{
+   height: 100%;
+   width: 100%;
+}
+.header-user{
+    float: right;
+    vertical-align: middle;
+}
+.header-avatar{
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    border-radius: 20px;
+    background: url(../images/avatar.jpg) center center no-repeat;
+    background-size: 100%;
+    vertical-align: middle;
+}
