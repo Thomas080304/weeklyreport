@@ -1,21 +1,66 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>morden</title>
-<link rel="stylesheet" type="text/css" href="./css/common/reset.css" />
-<link rel="stylesheet" type="text/css" href="./css/common/lib.css" />
-<link rel="stylesheet" type="text/css" href="./css/common/ui.css">
-<script type="text/javascript" src="./mvc.js"></script>
-</head>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>morden</title>
+    <link rel="stylesheet" type="text/css" href="./css/common/ui.css" />
+    <script type="text/javascript" src="./js/plugin/html5shiv.min.js"></script>
+    <script type="text/javascript" src="./js/plugin/jquery.js"></script>
+    <script type="text/javascript" src="./js/plugin/sea.js"></script>
+    <script type="text/javascript">
+      seajs
+        .config({
+          base: './js',
+          alias: {
+            jquery: 'plugin/jquery'
+          }
+        })
+        .use(['common/ui_comp'], function(modules) {
+			//
+          $('#alertDialog').on('click', function() {
+            new modules.Dialog().alert('操作成功！', {
+              type: 'success'
+            });
+		  });
+		  
+		  //
+			new modules.Tips($('#spTips'), {
+				content: '点击此按钮会注销你的账户，您的目前的操作都不能执行，直到你重新登录',
+				align: 'right'
+			}); 
+		 //
+			new modules.DropPanel($('#trigger'),{
+				title: '删除评论',
+				content: '删除后，您的粉丝在文章中将无法看到该评论。',
+				buttons: [{value: '删除'}, {}]
+			});
+			new modules.DropPanel($('#trigger2'),{
+				title: '删除评论',
+				content: '删除后，您的粉丝在文章中将无法看到该评论。',
+				buttons: [{value: '删除'}, {}]
+			});
+		 //
+		  
+        });
+    </script>
+  </head>
 
-<body>
-	<select>
-		<option value="1">1</option>
-		<option value="1">1</option>
-		<option value="1">1</option>
-		<option value="1">1</option>
-		<option value="1">1</option>
-	</select>
-</body>
+  <body style="height: 3000px;">
+  
+	
+	<a
+      href="javascript:"
+      id="alertDialog"
+      class="ui-button ui-button-success"
+      role="button"
+      >alert成功提示</a
+    >
+	
+	<div style="position:relative; top: 100px; left: 300px;">
+		<i id="spTips">tipsssssss</i>
+	</div>
+	
+	<p style="padding-left:500px;"><button id="trigger" data-target="id_9471460322077878" aria-expanded="false">点击我</button></p>
+	<p style="padding-left:500px;"><button id="trigger2" data-target="id_9471460322077879" aria-expanded="false">点击我</button></p>
+  </body>
 </html>

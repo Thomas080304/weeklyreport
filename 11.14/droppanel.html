@@ -1,0 +1,140 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>弹框</title>
+	<style>
+		.ui-dropanel-x{
+			position: absolute;
+			padding: 20px 10px;
+			border: 1px solid red;
+			height:300px;
+		}
+		.ui-dropanel-title{
+			margin-top: -2px;
+			margin-bottom: 0;
+			font-size:14px;
+		}
+		.ui-dropanel-close{
+			position: absolute;
+			height: 20px;
+			width: 20px;
+			right: 10px;
+			top: 13px;
+		}
+		.ui-dropanel-close svg{
+			width: 100%;
+			height: 100%;
+		}
+		.ui-dropanel-content{
+			
+		}
+		.ui-dropanel-footer{
+			text-align: right;
+		}
+	</style>
+	<script type="text/javascript" src="../js/plugin/jquery.js"></script>
+	<script type="text/javascript">
+		window.onload = function(){
+			var btn = $('#trigger');
+			var dialog = $('#id_33105496192158435');
+			btn.on('click',function(){
+				var pos = calcPos(dialog,btn,'bottom')
+				if(isAdjustedBottom(pos)){
+					pos = calcPos(dialog,btn,'top')
+				}				
+				dialog.css({
+					position:'absolute',
+					top:pos.top,
+					left:pos.left
+				})
+			});
+		}
+		
+		function isAdjustedBottom(pos){
+			//trigger_top+trigger_h+target_h
+			var winH = $(window).height();
+			return pos.top+pos.height > winH;
+		}
+		function calcDirection(target,trigger){
+			//btn相对于视口的偏移
+			var trigger_pos = trigger.offset();
+			//包含border在内的宽度
+			var trigger_w   = trigger.outerWidth();
+			//包含border在内的高度
+			var trigger_h   = trigger.outerHeight();
+			//距离视口左边的距离
+			var trigger_l   = trigger_pos.left;
+			//距离视口上面的距离
+			var trigger_t   = trigger_pos.top;
+			//弹框的宽度
+			var target_w    = target.outerWidth();
+			var target_h    = target.outerHeight();
+			
+			
+			
+		}
+		
+		
+		function calcPos(target,trigger,align){
+			//btn相对于视口的偏移
+			var trigger_pos = trigger.offset();
+			//包含border在内的宽度
+			var trigger_w   = trigger.outerWidth();
+			//包含border在内的高度
+			var trigger_h   = trigger.outerHeight();
+			//距离视口左边的距离
+			var trigger_l   = trigger_pos.left;
+			//距离视口上面的距离
+			var trigger_t   = trigger_pos.top;
+			//弹框的宽度
+			var target_w    = target.outerWidth();
+			var target_h    = target.outerHeight();
+			
+			var target_l,
+				target_t;
+			switch(align){
+				case 'top':
+					target_t = trigger_t-target_h;
+					target_l = trigger_l-(target_w-trigger_w)/2;
+					break;
+				case 'left':
+					target_t = 0;
+					target_l = 0;
+					break;
+				case 'right':
+					target_t = 0;
+					target_l = 0;
+					break;
+				default:
+					//bottom
+					target_t = trigger_t+trigger_h;
+					target_l = trigger_l-(target_w-trigger_w)/2;
+					break;
+			}
+			return {left:target_l,top:target_t,width:target_w,height:target_h}
+		}
+		
+		
+		
+	</script>
+</head>
+<body style="height:3000px">
+	<p style="padding-left:200px;">
+		<button id="trigger" data-target="id_9471460322077878" aria-expanded="false">
+			点击我
+		</button>
+	</p>
+	<div class="ui-dropanel-x ESC" id="id_33105496192158435">
+		<h5 class="ui-dropanel-title">删除评论</h5>
+		<a href="javascript:;" role="button" aria-label="关闭" class="ui-dropanel-close">
+			<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><path d="M116.152,99.999l36.482-36.486c2.881-2.881,2.881-7.54,0-10.42 l-5.215-5.215c-2.871-2.881-7.539-2.881-10.42,0l-36.484,36.484L64.031,47.877c-2.881-2.881-7.549-2.881-10.43,0l-5.205,5.215 c-2.881,2.881-2.881,7.54,0,10.42l36.482,36.486l-36.482,36.482c-2.881,2.881-2.881,7.549,0,10.43l5.205,5.215 c2.881,2.871,7.549,2.871,10.43,0l36.484-36.488L137,152.126c2.881,2.871,7.549,2.871,10.42,0l5.215-5.215 c2.881-2.881,2.881-7.549,0-10.43L116.152,99.999z"></path></svg>
+		</a>
+		<div class="ui-dropanel-content">删除后，您的粉丝在文章中将无法看到该评论。</div>
+		<div class="ui-dropanel-footer">
+			<a href="javascript:" class="ui-button ui-button-warning" role="button">删除</a>
+			<a href="javascript:" class="ui-button" role="button">取消</a>
+		</div>
+	</div>
+</body>
+</html>

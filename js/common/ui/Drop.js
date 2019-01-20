@@ -132,6 +132,7 @@
 				trigger.delegate(params.selector, 'click', function(event) {
 					drop.el.trigger = $(this);
 					// 点击即显示
+					console.log('2----->',drop)
 					if (drop.display == false) {
 						drop.show();
 					} else {
@@ -146,8 +147,10 @@
 		// 点击页面空白区域隐藏
 		if (params.eventType == 'null' || params.eventType == 'click') {
 			$(document).mousedown(function(event) {
+				
 			    var clicked = event && event.target;
-			    if (!clicked || !drop || drop.display != true) return;
+			    console.log('1----->',clicked)
+				if (!clicked || !drop || drop.display != true) return;
 
 			    var tri = drop.el.trigger.get(0), tar = drop.el.target.get(0);
 			    if (clicked != tri && clicked != tar && tri.contains(clicked) == false && tar.contains(clicked) == false) {

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>morden</title>
+    <link rel="stylesheet" type="text/css" href="./css/common/ui.css" />
+    <script type="text/javascript" src="./js/plugin/html5shiv.min.js"></script>
+    <script type="text/javascript" src="./js/plugin/jquery.js"></script>
+    <script type="text/javascript" src="./js/plugin/sea.js"></script>
+	<script type="text/javascript" src="https://cdn.bootcss.com/iScroll/5.2.0/iscroll.js"></script>
+	<script type="text/javascript">
+		var myScroll = null;
+		function onloaded(){
+			/** myScroll = new IScroll('#wrapper',{
+				mouseWheel: true,
+				scrollbars: true
+			}); **/
+			myScroll = new IScroll('#wrapper');
+		}
+	</script>
+    <script type="text/javascript">
+      seajs
+        .config({
+          base: './js',
+          alias: {
+            jquery: 'plugin/jquery'
+          }
+        })
+        .use(['common/ui_comp'], function(modules) {
+			//
+          $('#alertDialog').on('click', function() {
+            new modules.Dialog().alert('操作成功！', {
+              type: 'success'
+            });
+		  });
+		  
+		  //
+        });
+    </script>
+	
+	<style type="text/css">
+		html,body{
+			overflow:hidden;
+		}
+		body{
+			margin: 0;
+			background-color: #ccc;
+		}
+		.header{
+			height: 45px;
+			background-color: green;
+			position: fixed;
+			top: 0;
+			right: 0;
+			left: 0;
+			z-index: 10;
+		}
+		.main{
+			width: 100%;
+			position: absolute;
+			top: 45px;
+			right: 0;
+			bottom:30px;
+			left: 0;
+			margin: auto;
+		}
+		.aside{
+			position: absolute;
+			width: 275px;
+			background-color: red;
+			top: 0;
+			right: 0;
+			bottom:0;
+			left: 0;
+		}
+		.main-wrap{
+			position: absolute;
+			top:0;
+			right: 0;
+			bottom: 0;
+			left: 275px;
+			border: 1px solid black;
+			overflow: hidden;
+		}
+		.footer{
+			height: 30px;
+			background-color: #ccc;
+			position:fixed;
+			right:0;
+			bottom:0;
+			left:0;
+			z-index: 10;
+		}
+		@media (min-width: 1200px){
+			.main{
+				width: 1200px;	
+			}
+		}
+		@media (max-width: 768px){ 
+			.main{
+				bottom: 0;
+			}
+			.aside{
+				position: fixed;
+				z-index: 11;
+			}
+			.main-wrap{
+				left: 0;
+			}
+			.footer{
+				display:none;
+			}
+		}
+		.main-inner{
+			padding: 18px  28px 3px;
+		}
+		.main-row{
+			margin-bottom: 15px;
+			*zoom: 1;
+			background-color: #fff;
+		}
+		.main-row::after{
+			content: '';
+			display: table;
+			clear: both;
+		}
+		.count-item{
+			float: left;
+			width: 33.3%;
+		}
+		.count-innter{
+			height: 116px;
+			text-align: center;
+			border: 1px solid yellow;
+		}
+		.first-count{
+			margin-right: 16px;
+		}
+		.middle-count{
+			margin: 0 8px;
+		}
+		.last-count{
+			margin-left: 16px;
+		}
+		
+		.na768 .count-innter{
+			margin: 0;
+		}
+		.na768 .count-item{
+			float:left;
+			width: 50%;
+		}
+		.na768 .count-item{
+			margin-bottom: 20px;
+		}
+		.na768 .last-count-item{
+			width: 100%;
+			margin-bottom: 0;
+		}
+		.na768 .first-count{
+			margin-right: 16px;
+		}
+		.na768 .middle-count{
+			margin-left: 16px;
+		}
+		
+		.f0{
+			font-size:0;
+		}
+		.num-item{
+			display: inline-block;
+			padding: 10px 20px;
+			font-size: 14px;
+			vertical-align: bottom;
+			border-bottom: 3px solid transparent;
+		}
+		.num-item+.num-item{
+			border-left: 1px solid #ccc;
+		}
+		.table-list-wrap{
+			position: relative;
+			height: 0;
+		}
+		.table-list-icon{
+			position: absolute;
+			right: 0;
+			top: -30px;
+			font-size: 14px;
+		}
+		.selected-num{
+			border-bottom: 3px solid blue;
+		}
+		.rel{
+			position: relative;
+			padding: 9px 0 7px;
+		}
+		.os-type{
+			position: absolute;
+			width: 80px;
+			outline: 1px solid red;
+			height: 100%;
+			text-align: center;
+			vertical-align: middle;
+			top: 0;
+		}
+		.os-detail{
+			margin-left: 80px;
+			padding-left: 20px;
+		}
+		.os-detail-item{
+			vertical-align: middle;
+			line-height: 49px;
+		}
+		.os-item{
+			font-size: 14px;
+			vertical-align: middle;
+			margin-right: 30px;
+		}
+		.os-left{
+			float:left;
+		}
+		.os-right{
+			float:right;
+		}
+	</style>
+	
+  </head>
+
+  <body onload="onloaded()">
+    <div class="header">header</div>
+	<div class="main">
+		<div class="aside">
+			aside
+		</div>
+		<div class="main-wrap" id="wrapper">
+			<div class="main-inner">
+				<div class="main-row na768">
+					<div class="count-item">
+						<div class="count-innter first-count">
+							1
+						</div>
+					</div>
+					<div class="count-item">
+						<div class="count-innter middle-count">
+							2
+						</div>
+					</div>
+					<div class="count-item last-count-item">
+						<div class="count-innter last-count">
+							3
+						</div>
+					</div>
+				</div>
+				<div class="main-row f0">
+					<span class="num-item selected-num">all</span>
+					<span class="num-item">physizem</span>
+					<span class="num-item">Vitrual</span>
+					<span class="num-item">
+						<input />
+						<span class="large-icon">放大镜</span>
+					</span>
+					<div class="table-list-wrap">
+						<span class="table-list-icon">
+							<span>table</span>
+							<span>list</span>
+						</span>
+					</div>
+				</div>
+				<div class="main-row rel">
+					<span class="os-type"></span>
+					<div class="os-detail">
+						<div class="os-detail-item">
+							<span class="os-item os-name">yangtao080304@easted.com.cn</span>
+							<span class="os-item os-status">building</span>
+							<span class="os-item os-time">2018-12-28 16:18</span>
+							<span class="os-item os-folder">/Users/yangtao/Desktop</span>
+						</div>
+						<div class="os-detail-item">
+							<div class="os-left">
+								<span class="os-item os-add-icon">add</span>
+								<span class="os-item os-small">Chrome</span>
+								<span class="os-item os-small">FireFox</span>
+								<span class="os-item os-small">Ubuntu</span>
+							</div>
+							<div class="os-right">
+								<a class="os-btn">Deny</a>
+							</div>
+							<div style="clear:both;"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="footer">footer</div>
+  </body>
+</html>

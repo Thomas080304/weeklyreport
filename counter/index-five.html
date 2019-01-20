@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -19,21 +18,21 @@
     </div>
     <!-- built files will be auto injected -->
     <script type="text/javascript">
-    /*如何在组件嵌套中使用store*/
+    /*
+    	使用mutations改变state,即使用commit,mapMutations
+    */
     const store = new Vuex.Store({
         state: {
             count: 0
         },
         mutations: {
-            //同步改变state的方法
-            increment(state) {
+            increment(state,payload) {
                 state.count++
             }
         }
     })
     const Countor = {
         data() {
-            //组件本地的状态
             return {
                 local: 1
             }
@@ -46,26 +45,24 @@
             </div>
           `,
         computed: {
-            //map函数获取store中的state
+        	//使用map函数
             ...Vuex.mapState({
-                countcm: state => state.count,//从store中map count
-                localCount(state) {//本地状态和store状态混合
+                countcm: state => state.count,
+                localCount(state) {
                     return state.count + this.local
                 }
             }),
             count() {
-                //从父级传过来的store
                 return this.$store.state.count
             }
         },
         methods: {
             increment() {
+            	//使用commit
                 this.$store.commit('increment')
             }
         }
     };
-    //局部注册注册组件
-    //父级传递store给子组件，子组件中使用this.$store调用
     new Vue({
         el: '#app',
         store,
@@ -73,9 +70,4 @@
     })
     </script>
 </body>
-<!-- 在根上使用store的state
-    1.在根组件中添加store
-    2.在子组件中的computed,或者methods使用this.$store
--->
-
 </html>

@@ -521,8 +521,13 @@ methods. For example,
 
 }());
 /*
+<<<<<<< HEAD
 Hijos version 1.1.0
 Copyright (c) 2013, Peter Michaux
+=======
+Hijos version 1.1.1
+Copyright (c) 2014, Peter Michaux
+>>>>>>> fab843078f021ef3b851769d41e919077f540f72
 All rights reserved.
 Licensed under the Simplified BSD License.
 https://github.com/petermichaux/hijos/blob/master/LICENSE
@@ -615,9 +620,12 @@ hijos.Leaf.prototype.destroy = function() {
     this.nextSibling = null;
 };
 
+<<<<<<< HEAD
 // insure prototype object is initialized properly
 hijos.Leaf.call(hijos.Leaf.prototype);
 
+=======
+>>>>>>> fab843078f021ef3b851769d41e919077f540f72
 /**
 
 Mixes in the `Leaf` methods into any object. Be sure to call the `hijos.Leaf`
@@ -652,7 +660,11 @@ methods to manage the children.
 
 */
 hijos.Node = function() {
+<<<<<<< HEAD
     hijos.Leaf.call(this);
+=======
+    hijos.Node.superConstructor.call(this);
+>>>>>>> fab843078f021ef3b851769d41e919077f540f72
     this.childNodes = [];
     this.firstChild = null;
     this.lastChild = null;
@@ -669,7 +681,11 @@ hijos.Node.superConstructor = hijos.Leaf;
 // so write out the equivalent inline.
 hijos.Node.prototype = (function() {
     function F() {}
+<<<<<<< HEAD
     F.prototype = hijos.Leaf.prototype;
+=======
+    F.prototype = hijos.Node.superConstructor.prototype;
+>>>>>>> fab843078f021ef3b851769d41e919077f540f72
     return new F();
 }());
 hijos.Node.prototype.constructor = hijos.Node;
@@ -726,7 +742,11 @@ hijos.Node.prototype.destroy = function() {
     for (var i = 0, ilen = children.length; i < ilen; i++) {
         children[i].destroy();
     }
+<<<<<<< HEAD
     hijos.Leaf.prototype.destroy.call(this);
+=======
+    hijos.Node.superConstructor.prototype.destroy.call(this);
+>>>>>>> fab843078f021ef3b851769d41e919077f540f72
     // Loosing references to relations may help garbage collection.
     this.childNodes = null;
     this.firstChild = null;
@@ -915,9 +935,12 @@ hijos.Node.prototype.removeChild = function(oldChild) {
     throw new Error('hijos.Node.prototype.removeChild: node not found.');
 };
 
+<<<<<<< HEAD
 // insure prototype object is initialized correctly
 hijos.Node.call(hijos.Node.prototype);
 
+=======
+>>>>>>> fab843078f021ef3b851769d41e919077f540f72
 /**
 
 Mixes in the Node methods into any object.
@@ -1054,8 +1077,13 @@ don't want to have a loop of thousands with calls to this function.
 
 }());
 /*
+<<<<<<< HEAD
 Grail version 4
 Copyright (c) 2012, Peter Michaux
+=======
+Grail version 1.0.4
+Copyright (c) 2014, Peter Michaux
+>>>>>>> fab843078f021ef3b851769d41e919077f540f72
 All rights reserved.
 Licensed under the Simplified BSD License.
 https://github.com/petermichaux/grail/blob/master/LICENSE
@@ -1083,6 +1111,7 @@ var grail = {};
         return str.replace(trimLeft, '').replace(trimRight, '');
     }
 
+<<<<<<< HEAD
     function isHostMethod(obj, prop) {
         return (typeof obj[prop] === 'function') ||
                 ((typeof obj[prop] === 'object') && (obj[prop] !== null)); // Internet Explorer
@@ -1112,6 +1141,30 @@ var grail = {};
     }
 
     function filterDOM(node, func) {
+=======
+    // Even though it is not required by the ECMAScript specificaiton,
+    // most host methods in most browsers have typeof "function". Some
+    // versions of Internet Explorer, however, have host methods with
+    // typeof "object". Relavant to this library, in particular, is
+    // the feature test 
+    // 
+    //    typeof document.getElementById
+    //
+    // which returns "object" in Internet Explorer 6. Also
+    //
+    //    typeof document.querySelector
+    //
+    // returns "object" in Internet Explorer 8. The ECMAScript null
+    // value also has typeof "object" so we also need to check that
+    // the host method is not actually the null value.
+    //
+    function isHostMethod(obj, prop) {
+        return (typeof obj[prop] === 'function') ||
+                ((typeof obj[prop] === 'object') && (obj[prop] !== null));
+    }
+
+    function findAllInDOM(node, func) {
+>>>>>>> fab843078f021ef3b851769d41e919077f540f72
        var results = [];
        function walk(node) {
            if (func(node)) {
@@ -1127,7 +1180,11 @@ var grail = {};
        return results;
     }
 
+<<<<<<< HEAD
     function firstInDOM(node, func) {
+=======
+    function findInDOM(node, func) {
+>>>>>>> fab843078f021ef3b851769d41e919077f540f72
         function walk(node) {
             if (func(node)) {
                 return node;
@@ -1144,6 +1201,32 @@ var grail = {};
         return walk(node);
     }
 
+<<<<<<< HEAD
+=======
+    function findById(id, root) {
+        return (root.id === id) ?
+                   root :
+                   (isHostMethod(root, 'getElementById')) ?
+                       root.getElementById(id) :
+                       (isHostMethod(root, 'querySelector')) ?
+                           root.querySelector('#' + id) :
+                           findInDOM(root, function(node) {return node.id === id;});
+    }
+
+    function getTagNameClassNameMatcher(tagName, className) {
+        tagName = tagName ? tagName.toUpperCase() : '*';
+        if (className) {
+            var regExp = new RegExp('(?:^|\\s+)' + className + '(?:\\s+|$)');
+        }
+        return function(element) {
+            return (((tagName === '*') ||
+                     (element.tagName && (element.tagName.toUpperCase() === tagName))) &&
+                    ((!className) ||
+                     regExp.test(element.className)));
+        }
+    }
+
+>>>>>>> fab843078f021ef3b851769d41e919077f540f72
 /**
 
 Search for all elements matching the CSS selector. Returns an array of the elements.
@@ -1187,6 +1270,12 @@ as the search starting point.
             if (isHostMethod(root, 'querySelectorAll')) {
                 var elements;
                 var results = [];
+<<<<<<< HEAD
+=======
+                // querySelectorAll does not include the root element in its results
+                // even if the root element matches the selector. We test the root element
+                // for a match before using querySelectorAll to search the descendents.
+>>>>>>> fab843078f021ef3b851769d41e919077f540f72
                 if (tagNameClassNameMatcher(root)) {
                     results.push(root);
                 }
@@ -1197,7 +1286,11 @@ as the search starting point.
                 return results;
             }
             else {
+<<<<<<< HEAD
                 return filterDOM(root, tagNameClassNameMatcher);
+=======
+                return findAllInDOM(root, tagNameClassNameMatcher);
+>>>>>>> fab843078f021ef3b851769d41e919077f540f72
             }
         }
         else {
@@ -1230,10 +1323,20 @@ The rest of the details are the same as for grail.findAll.
         else if (matches = selector.match(tagClassRegExp)) {
             var tagNameClassNameMatcher = getTagNameClassNameMatcher(matches[1], matches[2]);
             if (isHostMethod(root, 'querySelector')) {
+<<<<<<< HEAD
                 return tagNameClassNameMatcher(root) ? root : root.querySelector(selector);
             }
             else {
                 return firstInDOM(root, tagNameClassNameMatcher);
+=======
+                // querySelector does not return the root element as its result even
+                // if the root element matches the selector. We test the root element
+                // for a match before using querySelector to search the descendents.
+                return tagNameClassNameMatcher(root) ? root : root.querySelector(selector);
+            }
+            else {
+                return findInDOM(root, tagNameClassNameMatcher);
+>>>>>>> fab843078f021ef3b851769d41e919077f540f72
             }
         }
         else {
@@ -1243,8 +1346,13 @@ The rest of the details are the same as for grail.findAll.
 
 }());
 /*
+<<<<<<< HEAD
 Hormigas version 1.1.0
 Copyright (c) 2013, Peter Michaux
+=======
+Hormigas version 1.1.1
+Copyright (c) 2014, Peter Michaux
+>>>>>>> fab843078f021ef3b851769d41e919077f540f72
 All rights reserved.
 Licensed under the Simplified BSD License.
 https://github.com/petermichaux/hormigas/blob/master/LICENSE
@@ -1259,6 +1367,21 @@ The root namespace for the Hormigas library.
 var hormigas = {};
 (function() {
 
+<<<<<<< HEAD
+=======
+    // The technique of giving set elements an id for efficient set operations
+    // (e.g. has) works as long as the following situation does not happen.
+    // If this library is loaded in two browsers windows that can communicate
+    // and the browser windows share objects, there could be an objects in
+    // each browser window that has the same id. If adding those two objects
+    // to the same ObjectSet is attempted, only the first object will be added.
+    // When the attempt to add the second object is made, the set will think
+    // that the object is already an element in the set. If anyone ever has
+    // a problem with this, we could try to determine a way to make these
+    // ids unique even across browser windows. As it is, no one is having
+    // problems so keeping this simple is the choice made for now.
+
+>>>>>>> fab843078f021ef3b851769d41e919077f540f72
     var nextId = 0;
 
     function getId() {
@@ -1366,7 +1489,10 @@ If `element` is not already in the set then adds element to the set.
             return false;
         }
         else {
+<<<<<<< HEAD
             var id;
+=======
+>>>>>>> fab843078f021ef3b851769d41e919077f540f72
             if (!Object.prototype.hasOwnProperty.call(element, '_hormigas_ObjectSet_id')) {
                 element._hormigas_ObjectSet_id = getId();
             }
@@ -1396,6 +1522,13 @@ position so quote `delete`.
 */
     hormigas.ObjectSet.prototype['delete'] = function(element) {
         if (this.has(element)) {
+<<<<<<< HEAD
+=======
+            // Note that the element is removed from this ObjectSet but
+            // the element._hormigas_ObjectSet_id property of the element
+            // is not removed. That property is not removed because
+            // the element may be a member of another set.
+>>>>>>> fab843078f021ef3b851769d41e919077f540f72
             delete this._hormigas_ObjectSet_elements[element._hormigas_ObjectSet_id];
             this.size--;
             return true;
@@ -1741,6 +1874,26 @@ See hijos.Node for description.
 
 */
 maria.Node = hijos.Node;
+<<<<<<< HEAD
+=======
+/** 
+
+Find an element matching a CSS selector.
+
+See grail.find for description.
+
+*/
+maria.find = grail.find;
+
+/**
+
+Find all elements matching a CSS selector.
+
+See grail.findAll for description.
+
+*/
+maria.findAll = grail.findAll;
+>>>>>>> fab843078f021ef3b851769d41e919077f540f72
 /**
 
 A constructor function to create new model objects.
@@ -2869,7 +3022,12 @@ Remove an existing child view.
 maria.ElementView.prototype.removeChild = function(oldChild) {
     maria.View.prototype.removeChild.call(this, oldChild);
     if (this._rootEl) {
+<<<<<<< HEAD
         this.getContainerEl().removeChild(oldChild.build());
+=======
+        var oldChildRootEl = oldChild.build();
+        oldChildRootEl.parentNode.removeChild(oldChildRootEl);
+>>>>>>> fab843078f021ef3b851769d41e919077f540f72
     }
 };
 
@@ -2901,7 +3059,11 @@ to use some libray other than Grail.
 
 */
 maria.ElementView.prototype.find = function(selector) {
+<<<<<<< HEAD
     return grail.find(selector, this.build());
+=======
+    return maria.find(selector, this.build());
+>>>>>>> fab843078f021ef3b851769d41e919077f540f72
 };
 
 /**
@@ -2917,7 +3079,11 @@ See `find` for more details.
 
 */
 maria.ElementView.prototype.findAll = function(selector) {
+<<<<<<< HEAD
     return grail.findAll(selector, this.build());
+=======
+    return maria.findAll(selector, this.build());
+>>>>>>> fab843078f021ef3b851769d41e919077f540f72
 };
 /**
 
@@ -3380,11 +3546,19 @@ maria.View.subclass = function(namespace, name, options) {
 };
 /**
 
+<<<<<<< HEAD
 A function that makes subclassing maria.ElementView more compact.
 
 The following example creates a checkit.TodoView constructor function
 equivalent to the more verbose example shown in the documentation
 for maria.ElementView.
+=======
+A function that makes subclassing `maria.ElementView` more compact.
+
+The following example creates a `checkit.TodoView` constructor function
+equivalent to the more verbose example shown in the documentation
+for `maria.ElementView`.
+>>>>>>> fab843078f021ef3b851769d41e919077f540f72
 
     maria.ElementView.subclass(checkit, 'TodoView', {
         uiActions: {
@@ -3427,9 +3601,15 @@ for maria.ElementView.
     });
 
 This subclassing function implements options following the
+<<<<<<< HEAD
 "convention over configuration" philosophy. The checkit.TodoView will,
 by convention, use the checkit.TodoController
 and checkit.TodoTemplate objects. All of these can be configured
+=======
+"convention over configuration" philosophy. The `checkit.TodoView` will,
+by convention, use the `checkit.TodoController`
+and `checkit.TodoTemplate` objects. All of these can be configured
+>>>>>>> fab843078f021ef3b851769d41e919077f540f72
 explicitly if these conventions do not match your view's needs.
 
     maria.ElementView.subclass(checkit, 'TodoView', {
@@ -3442,18 +3622,57 @@ Alternately you can use late binding by supplying string names of
 objects in the application's namespace object (i.e. the checkit object
 in this example).
 
+<<<<<<< HEAD
 maria.ElementView.subclass(checkit, 'TodoView', {
     controllerConstructorName: 'TodoController',
     templateName             : 'TodoTemplate'  ,
     uiActions: {
     ...
 
+=======
+    maria.ElementView.subclass(checkit, 'TodoView', {
+        controllerConstructorName: 'TodoController',
+        templateName             : 'TodoTemplate'  ,
+        uiActions: {
+        ...
+
+You can augment `uiActions` in your subclass by specifying the declarative
+`moreUIActions` property (instead of using `uiActions`.)
+
+    checkit.TodoView.subclass(checkit, 'ReminderView', {
+        moreUIActions: {
+            'click .reminder': 'onClickReminder'
+        },
+        properties: {
+            showReminder: function() {
+                this.find('.todo-reminder').style.display = 'block';
+            },
+            hideReminder: function() {
+                this.find('.todo-reminder').style.display = 'none';
+            }
+        }
+    });
+
+The `ReminderView` will inherit the properties defined in `uiActions` from
+`TodoView` and augment it with `moreUIActions`. The subclassing function
+will generate the equivalent of the following function.
+
+    checkit.TodoView.prototype.getUIActions = function () {
+        var uiActions = checkit.TodoView.superConstructor.prototype.getUIActions.call(this);
+        uiActions['click .reminder'] = 'onClickReminder';
+        return uiActions;
+    };
+>>>>>>> fab843078f021ef3b851769d41e919077f540f72
 */
 maria.ElementView.subclass = function(namespace, name, options) {
     options = options || {};
     var template = options.template;
     var templateName = options.templateName || name.replace(/(View|)$/, 'Template');
     var uiActions = options.uiActions;
+<<<<<<< HEAD
+=======
+    var moreUIActions = options.moreUIActions;
+>>>>>>> fab843078f021ef3b851769d41e919077f540f72
     var properties = options.properties || (options.properties = {});
     if (!Object.prototype.hasOwnProperty.call(properties, 'getTemplate')) {
         if (template) {
@@ -3468,12 +3687,35 @@ maria.ElementView.subclass = function(namespace, name, options) {
             };
         }
     }
+<<<<<<< HEAD
+=======
+    
+>>>>>>> fab843078f021ef3b851769d41e919077f540f72
     if (uiActions) {
         if (!Object.prototype.hasOwnProperty.call(properties, 'getUIActions')) {
             properties.getUIActions = function() {
                 return uiActions;
             };
         }
+<<<<<<< HEAD
+=======
+    }
+    else if (moreUIActions) {
+        if (!Object.prototype.hasOwnProperty.call(properties, 'getUIActions')) {
+            properties.getUIActions = function() {
+                var uiActions = namespace[name].superConstructor.prototype.getUIActions.call(this);
+                for (var key in moreUIActions) {
+                    if (Object.prototype.hasOwnProperty.call(moreUIActions, key)) {
+                        uiActions[key] = moreUIActions[key];
+                    }
+                }
+                return uiActions;
+            };
+        }
+        uiActions = moreUIActions;
+    }
+    if (uiActions) {
+>>>>>>> fab843078f021ef3b851769d41e919077f540f72
         for (var key in uiActions) {
             if (Object.prototype.hasOwnProperty.call(uiActions, key)) {
                 var methodName = uiActions[key];
@@ -3558,4 +3800,8 @@ maria.Controller.subclass = function() {
     maria.subclass.apply(this, arguments);
 };
 
+<<<<<<< HEAD
 return maria;}()); // IIFE
+=======
+return maria;}()); // IIFE
+>>>>>>> fab843078f021ef3b851769d41e919077f540f72

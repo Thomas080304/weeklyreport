@@ -106,4 +106,8 @@ aristocrat.toggleClass(document.body, 'king');
         }
     };
 
+<<<<<<< HEAD
 }());
+=======
+}());
+>>>>>>> fab843078f021ef3b851769d41e919077f540f72

@@ -10,7 +10,21 @@
     <script src="js/util.js"></script>
     <script src="js/models/TodoModel.js"></script>
     <script type="text/javascript">
+<<<<<<< HEAD
 
+=======
+        var alpha = new maria.Model();
+        alpha.name = 'Alpha';
+        var beta = new maria.Model();
+        beta.name = 'Beta';
+        var setModel = new maria.SetModel(alpha, beta);
+        var view = {
+            update: function(evt) {
+                alert(setModel.size + ' element(s) in the set.');
+            }
+        };
+        maria.on(setModel, 'change', view, 'update');
+>>>>>>> fab843078f021ef3b851769d41e919077f540f72
     </script>
 </body>
 </html>

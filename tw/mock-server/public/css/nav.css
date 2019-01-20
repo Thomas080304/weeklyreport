@@ -1,0 +1,80 @@
+.aside-nav{
+    padding-top: 18px;
+}
+.nav-li{
+    padding: 5px 0;
+}
+.nav-a{
+    font-size: 0;
+    color: #fff;
+    line-height: 45px;
+    padding-left: 32px;
+    height: 45px;
+    display: block;
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+}
+.nav-a:hover,
+.nav-selected .nav-a{
+    color: #00b4cf;
+    background-color: #435466;
+}
+.nav-i{
+    font-size: 20px;
+}
+.nav-text{
+    font-size: 14px;
+    margin-left: 18px;
+}
+.nav-history{
+    position: absolute;
+    bottom: 20px;
+    color: #ccc;
+    padding-left: 12px;
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    max-height: 290px;
+    overflow: hidden;
+}
+.history-title{
+    font-size: 20px;
+    margin-left: 2px;
+    margin-bottom: 16px;
+}
+.aside-histroy{
+    font-size: 12px;
+    color: #999;
+}
+.history-li{
+    line-height: 24px;
+}
+.history-a{
+    display: block;
+    color: #999;
+    width: 230px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.history-a::after{
+    display: inline-block;
+    vertical-align: middle;
+    width: 0;
+}
+.history-a:hover{
+    color: #00b4cf; 
+}
+.history-a:hover .history-i{
+    background-color: #00b4cf;
+}
+.history-i{
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    border-radius: 2px;
+    background-color: #999;
+    vertical-align: middle;
+}
+.history-text{
+    margin-left: 20px;
+    white-space: nowrap;
+    vertical-align: middle;
+}

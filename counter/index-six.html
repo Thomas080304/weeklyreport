@@ -13,26 +13,11 @@
 <body>
     <div id="app"></div>
     <script type="text/javascript">
-    /*?---vuex是什么
-    const store = new Vuex.Store({
-        state: {
-            count: 0
-        },
-        mutations: {
-            increment(state) {
-                state.count++
-            }
-        }
-    })
-    store.commit('increment');
-    store.commit('increment');
-    store.commit('increment');
-    store.commit('increment');
-    store.commit('increment');
-    store.commit('increment');
-    console.log(store);*/
-    /*vuex 是一个对象 api如下：
-      commit dispatch state getters
+    /*
+    	vuex生成一个对象，对象可以组合嵌套，
+    	mutations(state,payload)改变state
+    	getters(state,getters:别的getters)获取state
+    	action(ctx,payload) ctx:{state,rootState}
     */
     const moduleA = {
         namespaced:true,
@@ -41,11 +26,12 @@
         },
         mutations: {
             changeA(state){
+            	//
                 this.a = 'moduleA++';
             }
         },
         actions: { 
-            actionA(){
+            actionA(ctx,payload){
                 return new Promise((resole,reject)=>{
                     window.setTimeout(()=>{
                         resole('success');
@@ -54,19 +40,11 @@
             }
         },
         getters: { 
-            a(state){
+            a(state,getters,rootState){
                 return state.a;
             }
         }
     }
-    /*vuex是可以组合的对象
-        在没有命名空间的情况下,所有的model的state都会注册到
-        全局的state上,所有的getter会注册到全局的getter上,
-        所有的mutations会注册到_mutations,所有的actions会注册到
-        _actions
-        如果添加了命名空间,在上述的getter,_mutations,_actions都
-        会添加命名空间如:namespcae/a
-    */
     const moduleB = {
         namespaced:true,
         state: {
@@ -74,11 +52,14 @@
         },
         mutations: { 
             changeB(state){
-                this.b = 'moduleB++';
+            	// 这里的 `state` 对象是模块的局部状态
+                this.b = 'moduleA++';
             }
         },
         actions: { 
-            actionB(){
+            actionB(ctx,payload){
+            	//ctx.state暴露的是模块的局部状态
+            	//ctx.rootState全局的state
                 return new Promise((resole,reject)=>{
                     window.setTimeout(()=>{
                         resole('success');
@@ -86,19 +67,18 @@
                 });
             }
         },
-		modules:{moduleA},
         getters: { 
-            b(state){
+            b(state,getters,){
+            	// 这里的 `state` 对象是模块的局部状态
                 return state.b;
             }
         }
     }
-	debugger
     const store2 = new Vuex.Store({
         state: {
             count: 0
         },
-        modules:{moduleB},
+        modules:{moduleA,moduleB},
         mutations: {
             increment(state) {
                 state.count++
@@ -114,6 +94,14 @@
             }
         },
     })
+    /*组合后的state
+    	store.state.moduleA
+    	store.state.moduleB
+    	模块内部的 mutation(state,getters)改变state 和 getter(state)获取state 中的第一个参数state，是模块内部的state
+
+
+    */
+    debugger;
     console.log(store2);
     </script>
 </body>

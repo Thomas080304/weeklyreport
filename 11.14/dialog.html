@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>弹框</title>
+	<style>
+		html{
+			overflow: hidden;
+		}
+		body{
+			zoom: 1;
+			border-right: 0 solid transparent;/**why*/
+		}
+		.ui-dialog-container{
+			position: fixed;
+			text-align: center;
+			top: 0;
+			left: 0;
+			height: 100%;
+			width: 100%;
+			background: rgba(25, 28, 34, 0.88);
+			filter:progid:DXImageTransform.Microsoft.gradient(startcolorstr=#CC191c22,endcolorstr=#CC191c22);
+		}
+		.ui-dialog-container::after{
+			content: " ";
+			display: inline-block;
+			width: 0;
+			height: 100%;
+			vertical-align: middle;
+		}
+		.ui-dialog{
+			display: inline-block;
+			*display: inline;
+			*zoom: 1;
+			min-width: 400px;
+			background-color: #fff;
+			position: relative;
+			vertical-align: middle;
+			text-align: left;
+		}
+		.ui-dialog-title{
+			padding: 15px 50px 0 25px;
+		}
+		.ui-dialog-body{
+			min-height: 60px;
+			padding: 10px 25px 20px;
+			zoom: 1;
+		}
+		.ui-dialog-footer{
+			padding: 0 25px 25px;
+			text-align: right;
+		}
+		.ui-dialog-close{
+			position: absolute;
+			width: 20px;
+			height: 20px;
+			right: 10px;
+			top: 10px;
+		}
+		.ui-dialog-close svg{
+			width: 100%;
+			height: 100%;
+		}
+	</style>
+</head>
+<body style="height:3000px">
+	<div style="color:red;font-size: 10em">test test</div>
+	<div class="ui-dialog-container">
+		<div class="ui-dialog" style="width: auto;">
+			<a href="javascript:" class="ui-dialog-close">
+				<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+					<path d="M116.152,99.999l36.482-36.486c2.881-2.881,2.881-7.54,0-10.42 l-5.215-5.215c-2.871-2.881-7.539-2.881-10.42,0l-36.484,36.484L64.031,47.877c-2.881-2.881-7.549-2.881-10.43,0l-5.205,5.215 c-2.881,2.881-2.881,7.54,0,10.42l36.482,36.486l-36.482,36.482c-2.881,2.881-2.881,7.549,0,10.43l5.205,5.215 c2.881,2.871,7.549,2.871,10.43,0l36.484-36.488L137,152.126c2.881,2.871,7.549,2.871,10.42,0l5.215-5.215 c2.881-2.881,2.881-7.549,0-10.43L116.152,99.999z"></path>
+				</svg>
+			</a>
+			<div class="ui-dialog-title"></div>
+			<div class="ui-dialog-body">
+				<div class="ui-dialog-success">
+					<h6>操作成功！</h6>
+				</div>
+			</div>
+			<div class="ui-dialog-footer">
+				<a href="javascript:;" class="ui-button ui-button-success">确定</a>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

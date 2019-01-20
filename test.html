@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>morden</title>
+    <link rel="stylesheet" type="text/css" href="./css/common/ui.css" />
+    <script type="text/javascript" src="./js/plugin/html5shiv.min.js"></script>
+    <script type="text/javascript" src="./js/plugin/jquery.js"></script>
+    <script type="text/javascript" src="./js/plugin/sea.js"></script>
+    <script type="text/javascript">
+      seajs
+        .config({
+          base: './js',
+          alias: {
+            jquery: 'plugin/jquery'
+          }
+        })
+        .use(['common/ui_comp'], function(modules) {
+			//
+          $('#alertDialog').on('click', function() {
+            new modules.Dialog().alert('操作成功！', {
+              type: 'success'
+            });
+		  });
+		  
+		  //
+        });
+    </script>
+	
+	<style type="text/css">
+		body{
+			margin: 0;
+		}
+		.header{
+			height: 45px;
+			background-color: green;
+			position: fixed;
+			top: 0;
+			right: 0;
+			left: 0;
+			z-index: 10;
+		}
+		.main{
+			padding-top: 45px;
+			width:1200px;
+			margin: auto;
+			position:relative;
+		}
+		.aside{
+			position: fixed;
+			width: 275px;
+			top: 45px;
+			bottom: 30px;
+			background-color: red;
+		}
+		.main-wrap{
+			margin-left: 275px;
+			overflow:hidden;
+			border: 1px solid black;
+		}
+		.footer{
+			height: 30px;
+			background-color: #ccc;
+			position:fixed;
+			right:0;
+			bottom:0;
+			left:0;
+		}
+	</style>
+	
+  </head>
+
+  <body>
+    <div class="header">header</div>
+	<div class="main">
+		<div class="aside">
+			aside
+		</div>
+		<div class="main-wrap">
+			main
+		</div>
+	</div>
+	<div class="footer">footer</div>
+  </body>
+</html>
