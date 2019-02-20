@@ -1,0 +1,132 @@
+java能动态分配数组吗？ 
+答：可以。int i = 12;int[] myInt = new int[i];
+
+---------------------------------------------------
+我怎么知道数组的长度？
+.length属性获取
+
+---------------------------------------------------
+数组有没有length()这个方法? String有没有length()这个方法
+答：数组没有length()这个方法，有length的属性。String有length()这个方法
+
+---------------------------------------------------
+Java中的任何数据类型都可以使用System.out.pritln方法显示。
+对基本数据类型而言，输出的往往是变量的值；
+对于像数组这一类复杂的数据类型，会如何呢？
+
+---------------------------------------------------
+String[] stringArray = new String[3]; // 各元素的值默认为null
+for (int i = 0; i < stringArray.length; i++) { // 对各元素进行初始化，但没有赋值。
+	stringArray[i] = new String();
+	System.out.println(stringArray[i]);
+}
+空  （有别于null）
+
+---------------------------------------------------
+操作二维数组不应使用常数来控制维数。具体方法是array.length表示行数，
+array[row].length来表示row行的列数。这样当数组行数和列数不相等时，
+代码可以自动调整为正确的值。
+
+---------------------------------------------------
+下面数组定义正确的有_____
+A.String strs[] = { ‘a’ ‘b’ ‘c’};  
+B.String[] strs = {“a”, “b”, “c”};
+C.String[] strs = new String{“a” ”b” ”c”};
+D.String strs[] = new String[]{“a”, “b”, “c”};
+E.String[] strs = new String[3]{“a”, “b”, “c”};
+
+
+B_D
+---------------------------------------------------
+写出结果。
+class Demo{
+	public static void main(String[] args){
+		String foo="blue"; 
+		boolean[] bar=new boolean[2]; 
+		if(bar[0]){   
+      			foo="green"; 
+   		} 
+		System.out.println(foo);
+	}
+}
+
+[输出]：blue
+--------------------------------------------------
+下面哪个数组定义是错误的。
+并对错误的答案加上单行注释，写出错误的原因。
+A，float[]=new float[3]; //
+B, float f2[]=new float[];//
+C, float[] f1=new float[3];//
+D, boolean[] b={"true","false","true"};//
+E, double f4[]={1,3,5}; //
+F, int f5[]=new int[3]{2,3,4}; //
+G, float f4[]={1.2F,3.0,5.4};//
+--------------------------------------------------
+数组a[n]，用java代码将数组元素顺序颠倒
+
+[answer]
+public static void main(String[] args){
+	int [] a = new int[]{
+		(int)(Math.random() * 1000),
+		(int)(Math.random() * 1000),
+		(int)(Math.random() * 1000),
+		(int)(Math.random() * 1000),						
+		(int)(Math.random() * 1000)																		
+		};	
+		
+	System.out.println(a);
+	System.out.println(Arrays.toString(a));
+	swap(a);
+	System.out.println(Arrays.toString(a));		
+}
+	
+public static void swap(int a[]){
+	int len = a.length;
+	for(int i=0;i<len/2;i++){
+		int tmp = a[i];
+		a[i] = a[len-1-i];
+		a[len-1-i] = tmp;
+	}
+}
+
+---------------------------------------------------
+//任意一个人输入年龄，就可以判断出他是哪个年龄段的人？
+
+/*
+0-9   儿童
+10-19 少年
+20-29 青少年
+30-39 青年
+40-49 壮年
+50-59 中年
+60-69 中老年
+70-79 老年
+80-89 老老年
+90-99 老老老年
+*/
+/*
+//1.switch
+	int age = 34;
+	switch(age/10){
+		case 0:		....0-9....
+		case 1:   ....10-19....
+		case 2:   .....
+}
+//2.if...else.....
+	if(age>=0 && age<10){
+		.....
+	}else if(age>=10 && age< 20){
+		....
+	}else......
+*/
+//3.数据结构的思想
+	int age = 22;
+	String[] arr = {"儿童","少年","青少年","青年","壮年","中年","","","",""};
+	int idx = age/10;
+	System.out.println(arr[idx])
+
+---------------------------------------------------
+
+---------------------------------------------------
+
+---------------------------------------------------

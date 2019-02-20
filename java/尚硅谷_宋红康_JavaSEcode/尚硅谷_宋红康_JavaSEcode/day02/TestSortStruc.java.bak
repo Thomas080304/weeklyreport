@@ -1,0 +1,8 @@
+//流程控制：顺序结构；分支结构（if-else；switch-case）；循环结构(while;do...while;for(;;))
+class TestSortStruc 
+{
+	public static void main(String[] args) 
+	{
+		System.out.println("Hello World!");
+	}
+}

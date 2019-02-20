@@ -1,0 +1,278 @@
+哪个选项和show函数重载
+class Demo{
+    void show(int a,int b,float c){}
+}
+
+A.void show(int a,float c,int b){}//yes
+
+B,void show(int a,int b,float c){}//一模一样。不可以出现在同一个类中。
+
+C.int show(int a,float c,int b){return a;}//yes。
+
+D.int show(int a,float c){return a;}//yes
+--------------------------------------------------
+面向对象的特点
+答：面向对象有三大特点：封装、继承、多态。(如果要回答四个，可加上 抽象性 这一特点)
+1.继承：
+继承是一种联结类的层次模型，并且允许和鼓励类的重用，它提供了一种明确表述共性的方法。对象的一个新类可以从现有的类中派生，这个过程称为类继承。新类继承了原始类的特性，新类称为原始类的派生类（子类），而原始类称为新类的基类（父类）。派生类可以从它的基类那里继承方法和实例变量，并且类可以修改或增加新的方法使之更适合特殊的需要。
+2.封装：
+封装是把过程和数据包围起来，对数据的访问只能通过已定义的界面。面向对象计算始于这个基本概念，即现实世界可以被描绘成一系列完全自治、封装的对象，这些对象通过一个受保护的接口访问其他对象。
+3. 多态性：
+多态性是指允许不同类的对象对同一消息作出响应。多态性包括参数化多态性和包含多态性。多态性语言具有灵活、抽象、行为共享、代码共享的优势，很好的解决了应用程序函数同名问题。
+4.抽象：
+抽象就是忽略一个主题中与当前目标无关的那些方面，以便更充分地注意与当前目标有关的方面。抽象并不打算了解全部问题，而只是选择其中的一部分，暂时不用部分细节。抽象包括两个方面，一是过程抽象，二是数据抽象。
+--------------------------------------------------
+作用域public,private,protected,以及不写时的区别
+
+--------------------------------------------------
+public class Something {
+   void doSomething () {
+       private String s = "";
+       int l = s.length();
+   }
+}
+有错吗?
+答案: 错。局部变量前不能放置任何访问修饰符 (private，public，和protected)。final可以用来修饰局部变量
+(final如同abstract和strictfp，都是非访问修饰符，strictfp只能修饰class和method而非variable)。
+
+--------------------------------------------------
+方法重载(overload)必须满足________。
+A. 在不同class中定义的方法     B.在同一类型中定义的方法
+C. 方法名必须相同              D.返回类型必须相同
+E. 参数一定不同                F.参数可以相同
+
+--------------------------------------------------
+构造器Constructor是否可被override
+答：构造器Constructor不能被继承，因此不能重写Override，但可以被重载Overload
+
+--------------------------------------------------
+写出结果。(关于参数传递)
+public class Test      
+{ 
+	public static void leftshift(int i, int j)
+	{ 
+   		i+=j; 
+	} 
+	public static void main(String args[])
+	{ 
+		int i = 4, j = 2; 
+		leftshift(i, j); 
+		System.out.println(i); 
+	} 
+} 
+
+//4  和leftShift函数没关系。
+--------------------------------------------------
+写出结果。(关于参数传递)
+public class Demo
+{ 
+	public static void main(String[] args)
+	{ 
+		int[] a=new int[1]; 
+		modify(a); 
+		System.out.println(a[0]); //
+	}
+	public static void modify(int[] a)
+	{ 
+		a[0]++;
+	} 
+} 
+
+--------------------------------------------------
+public class TestA {
+	int i ;
+	void change(int i){
+		i++;
+		System.out.println(i);
+	}
+	void change1(TestA t){
+		t.i++;
+		System.out.println(t.i);
+	}
+	public static void main(String[] args) {
+		TestA ta = new TestA();
+		System.out.println(ta.i); //
+		ta.change(ta.i);//
+		System.out.println(ta.i); //
+		ta.change1(ta);  //
+		System.out.println(ta.i);//
+		
+	}
+}
+--------------------------------------------------
+写出结果。（关于参数传递）
+class Value{
+    int i = 15;
+}
+class Test{
+public static void main(String argv[]) {
+	Test t = new Test();
+	t.first();
+}
+
+public void first() {
+	int i = 5;
+	Value v = new Value();
+	v.i = 25;
+	second(v, i);
+	System.out.println(v.i);
+}
+
+public void second(Value v, int i) {
+	i = 0;
+	v.i = 20;
+	Value val = new Value();
+	v = val;
+	System.out.print(v.i + " " + i);
+}
+}
+A.15 0 20
+B.15 0 15
+C.20 0 20
+D.0 15 20
+A is correct.
+
+--------------------------------------------------
+写出结果。（关于参数传递）
+public class TestArgsValue {
+	public static void main(String[] args) {
+		int i = 10;
+		TestArgsValue tv = new TestArgsValue();
+		tv.method1(i);
+		System.out.println("i=" + i);
+		
+		System.out.println();
+		Demo d = new Demo();
+		System.out.println(d);
+		tv.method2(d);
+		System.out.println("d.i = " + d.i);
+		
+	}
+	public void method1(int i){
+		System.out.println("i=" + i++);
+	}
+	
+	public void method2(Demo d){
+		System.out.println(d);
+		System.out.println("d.i : " + d.i++);
+	}
+}
+class Demo{
+	int i = 5;
+}
+--------------------------------------------------
+当一个对象被当作参数传递到一个方法后，此方法可改变这个对象的属性，并可返回变化后的结果，
+那么这里到底是值传递还是引用传递?
+答：是值传递。Java 编程语言只有值传递参数。当一个对象实例作为一个参数被传递到方法中时，
+参数的值就是对该对象的引用。对象的内容可以在被调用的方法中改变，但对象的引用是永远不会改变的
+
+--------------------------------------------------
+class Test
+{ 
+	public static void main(String[] args)
+	{ 
+		String foo=args[1]; 
+		String bar=args[2]; 
+		String baz=args[3]; 
+	} 
+} 
+d:\>java Test Red Green Blue 
+
+what is the value of baz? 
+  A. baz has value of "" 
+  B. baz has value of null 
+  C. baz has value of "Red" 
+  D. baz has value of "Blue" 
+  E. baz has value of "Green" 
+  F. the code does not compile 
+  G. the program throw an exception 
+
+--------------------------------------------------
+
+What is the result when you compile and run the following code? 
+public class Test{
+public void method(){
+for(int i = 0; i < 3; i++) {
+       System.out.print(i);
+       }
+       System.out.print(i);
+}
+}
+A. 0122
+B. 0123
+C. compile error
+D. none of these
+
+--------------------------------------------------
+写出输出结果。
+class Demo{
+	public static void main(String[] args){
+		show(0);
+		show(1);
+	}	
+	public static void show(int i){
+		switch(i){	
+			default:
+				i+=2;
+			case 1:
+				i+=1;
+			case 4:
+				i+=8;			
+			case 2:
+				i+=4;
+		}
+		System.out.println("i="+i);
+	}	
+}
+
+--------------------------------------------------
+class Demo{
+	public static void main(String[] args){
+		int x = 1;
+		for(show('a'); show('b') && x<3; show('c')){
+			show('d'); 
+			x++;
+		}
+	}
+	public static boolean show(char ch){
+		System.out.print(ch);
+		return true;
+	}
+}
+
+//答案：abdcbdcb
+
+--------------------------------------------------
+补足compare函数内的代码，不许添加其他函数。
+class Circle{	
+	private double radius;
+	public Circle(double r){
+		radius=r;
+	}
+	public Circle compare(Circle cir){
+		//程序代码
+		/*
+		if(this.radius>cir.radius)
+			return this;
+		return cir;
+		*/
+
+
+		//return (this.radius>cir.radius)?this: cir;
+		
+	}
+}
+class TC
+{
+	public static void main(String[] args)
+	{
+		Circle cir1=new Circle(1.0);
+		Circle cir2=new Circle(2.0);
+		Circle cir;
+		cir=cir1.compare(cir2);
+		if(cir1==cir)
+			System.out.println("圆1的半径比较大");
+		else
+			System.out.println("圆2的半径比较大");
+	}
+}

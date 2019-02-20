@@ -1,0 +1,106 @@
+写出输出的结果.
+//考查运算符的优先级
+class Demo{
+	public static void main(String[] args){
+		int x=0,y=1;
+		if(++x==y-- & x++==1||--y==0)
+			System.out.println("x="+x+",y="+y);//x = 2,y = 0;
+		else
+			System.out.println("y="+y+",x="+x);
+	}
+}
+
+----------------------------------------------------
+int n = 5,m = 13;
+//插入代码，实现n和m值的交换
+System.out.println("n="+n+",m="+m);
+
+
+[answer]
+
+int n = 5,m = 13;
+//int temp = n;
+//n = m;
+//m = temp;
+System.out.println("n="+n+",m="+m);
+
+//n = n + m;
+//m = n - m;
+//n = n - m;
+System.out.println("n="+n+",m="+m);
+
+n = n ^ m;
+m = n ^ m ;
+n = n ^ m;
+System.out.println("n="+n+",m="+m);
+
+----------------------------------------------------
+如何手动实现整型数值60的二进制到十六进制的转换
+
+
+[answer]
+String str1 = Integer.toBinaryString(60);
+String str2 = Integer.toHexString(60);
+int i1 = 60;
+int i2 = i1&15;
+String j = (i2 > 9)? (char)(i2-10 + 'A')+"" : i2+"";
+
+int temp = i1 >>> 4;
+i2 = temp & 15;
+String k = (i2 > 9)? (char)(i2-10 + 'A')+"" : i2+"";
+System.out.println(k+""+j);
+
+----------------------------------------------------
+写出输出结果。
+class Demo{
+	public static void main(String[] args){
+		int a=3,b=8;
+
+		int c=(a>b)?a++:b++;
+		System.out.println("a="+a+"\tb="+b+"\tc="+c);  //
+
+		int d=(a>b)?++a:++b;
+		System.out.println("a="+a+"\tb="+b+"\td="+d);  //
+
+		int e=(a<b)?a++:b++;
+		System.out.println("a="+a+"\tb="+b+"\te="+e);  //
+
+		int f=(a<b)?++a:++b;
+		System.out.println("a="+a+"\tb="+b+"\tf="+f);  //
+	}
+}
+
+----------------------------------------------------
+short s1 = 1; s1 = s1 + 1;有什么错? short s1 = 1; s1 += 1;有什么错
+
+答：short s1 = 1; s1 = s1 + 1; （s1+1运算结果是int型，需要强制转换类型）
+short s1 = 1; s1 += 1;（可以正确编译）
+
+----------------------------------------------------
+Java有没有goto
+答：java中的保留字，现在没有在java中使用
+
+----------------------------------------------------
+用最有效率的方法算出2乘以8等於几
+答：2 << 3
+
+----------------------------------------------------
+char型变量中能不能存贮一个中文汉字?为什么?
+答：是能够定义成为一个中文的，因为java中以unicode编码，一个char占16个字节，
+所以放一个中文是没问题的
+
+----------------------------------------------------
+float型float f=3.4是否正确?
+答:不正确。精度不准确,应该用强制类型转换，如下所示：float f=(float)3.4
+
+----------------------------------------------------
+String是最基本的数据类型吗
+答：基本数据类型包括byte、int、char、long、float、double、boolean和short。
+java.lang.String类是final类型的，因此不可以继承这个类、不能修改这个类。为了提高效率节省空间，
+我们应该用StringBuffer类
+
+----------------------------------------------------
+
+----------------------------------------------------
+
+----------------------------------------------------

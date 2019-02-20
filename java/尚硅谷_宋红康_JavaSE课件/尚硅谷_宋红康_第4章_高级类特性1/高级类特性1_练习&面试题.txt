@@ -1,0 +1,407 @@
+ java类是否可以多继承，怎么实现多继承？
+答：java没有多继承，但可以通过接口的形式来达到多继承的目地。
+
+--------------------------------------------------
+我比较两个String总是false，但是它们明明都是"abc" ！ 
+答：比较String一定要使用equals或equalsIgnoreCase方法，不要使用 == ！ 
+　　==比较的是两个引用（变量）是否指向了同一个对象，而不是比较其内容。
+
+--------------------------------------------------
+int 和 Integer 有什么区别
+答：Java 提供两种不同的类型：引用类型和原始类型（或内置类型）。
+Int是java的原始数据类型，Integer是java为int提供的封装类。Java为每个原始类型提供了封装类。
+原始类型封装类,booleanBoolean,charCharacter,byteByte,shortShort,intInteger,longLong,floatFloat,doubleDouble
+引用类型和原始类型的行为完全不同，并且它们具有不同的语义。
+引用类型和原始类型具有不同的特征和用法，它们包括：大小和速度问题，这种类型以哪种类型的数据结构存储，
+当引用类型和原始类型用作某个类的实例数据时所指定的缺省值。对象引用实例变量的缺省值为 null，而原始类型实例变量
+的缺省值与它们的类型有关.
+
+--------------------------------------------------
+定义类A 和类B 如下：【基础】
+class A {
+	int a=1;
+	double d=2.0;
+	void show(){
+		System.out.println("Class A: a="+a +"\td="+d);
+	}
+}
+class B extends A{
+	float a=3.0f;
+	String d="Java program.";
+	void show(){
+		super.show( );
+		System.out.println("Class B: a="+a +"\td="+d);
+	}
+}
+(1) 若在应用程序的main 方法中有以下语句：
+A a=new A();
+a.show();
+则输出的结果如何？
+(2) 若在应用程序的main 方法中定义类B 的对象b：
+A b=new B();
+b.show();
+则输出的结果如何？
+答：输出结果为：
+1）Class A: a=1 d=2.0 
+2）Class A: a=1 d=2.0
+Class B: a=3.0 d=Java program。
+
+--------------------------------------------------
+public void testString(){
+	String str1 = "尚硅谷";
+	String str2 = "尚硅谷";
+	String str3 = new String("尚硅谷");
+	System.out.println(str1 == str2);//true
+	System.out.println(str1 == str3);//false
+	System.out.println(str1.equals(str3));//true
+	str1 = "尚硅谷atguigu.com";
+	String str4 = "atguigu.com";
+	String str5 = "尚硅谷" + "atguigu.com";
+	System.out.println(str1 == str5);//true
+	
+	String str6 = (str2 + str4).intern();
+	System.out.println(str1 == str6);//false  ---->true
+}
+--------------------------------------------------
+
+重载（overload)和重写(overried，有的书也叫做“覆盖”）的区别？
+Overload的方法是否可以改变返回值的类型？
+答：方法的重写Overriding和重载Overloading是Java多态性的不同表现。重写Overriding是父类
+与子类之间多态性的一种表现，重载Overloading是一个类中多态性的一种表现。如果在子类中定
+义某方法与其父类有相同的名称和参数，我们说该方法被重写 (Overriding)。子类的对象使用这
+个方法时，将调用子类中的定义，对它而言，父类中的定义如同被"屏蔽"了。如果在一个类中定
+义了多个同名的方法，它们或有不同的参数个数或有不同的参数类型，则称为方法的重载(Overloading)。
+Overloaded的方法是可以改变返回值的类型
+--------------------------------------------------
+写出程序结果	
+class Test
+{
+	Test()
+	{
+		System.out.println("Test");
+	}
+}
+class Demo extends Test
+{
+	Demo()
+	{
+		//super();
+		System.out.println("Demo");
+	}
+	public static void main(String[] args)
+	{
+		new Demo();
+		new Test();
+	}
+}
+Test
+Demo
+
+Test
+
+--------------------------------------------------
+写出程序结果(多态)
+class  A {
+    private int a;
+    public void setA(int a){
+         this.a = a;
+   }
+   public int getA(){
+	   return a;
+   }
+}
+class B extends A {
+ private int a;
+    public void setA(int a){
+        this.a = a;
+   }
+   // public int getA(){
+ //	   return a;
+    //}
+}
+public class TestPerson {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		A c = new B();
+
+		c.setA(5);
+
+		System.out.println(c.getA());
+		
+	}
+
+}
+--------------------------------------------------
+写出程序结果	
+class Fu
+{
+	boolean show(char a)
+	{
+		System.out.println(a);
+		return true;
+	}
+}
+class Demo extends Fu
+{
+	public static void main(String[] args)
+	{
+		int i=0;
+		Fu f=new Demo();
+		Demo d=new Demo();
+		for(f.show('A'); f.show('B')&&(i<2);f.show('C'))
+		{
+			i++;
+			d.show('D');
+		}	
+	}
+	boolean show(char a)
+	{
+		System.out.println(a);
+		return false;
+	}
+}
+A B
+
+--------------------------------------------------
+写出程序结果:   
+class Super
+{
+	int i=0;
+	public Super(String a)
+	{
+		System.out.println("A");
+		i=1;	
+	}
+	public Super()
+	{
+		System.out.println("B");
+		i+=2;
+	}
+}
+class Demo extends Super
+{
+	public Demo(String a)
+	{
+		//super();
+		System.out.println("C");
+		i=5;				
+	}
+	public static void main(String[] args)
+	{
+		int i=4;
+		Super d=new Demo("A");
+		System.out.println(d.i);
+	}
+}
+B C 5
+
+--------------------------------------------------
+interface Inter
+{
+	void show(int a,int b);
+	void func();
+}
+class Demo
+{
+	public static void main(String[] args)
+	{
+		//补足代码；调用两个函数，要求用匿名内部类
+		Inter in = new Inter()
+		{
+			public void show(int a,int b)
+			{
+			
+			}
+			public void func()
+			{
+			
+			}
+		};
+
+		in.show(4,5);
+		in.func();
+		
+	}
+}
+
+--------------------------------------------------
+选择题，写出错误答案错误的原因，用单行注释的方式。
+class Demo
+{
+	 int show(int a,int b){return 0;}
+}
+下面那些函数可以存在于Demo的子类中。	
+A.public int show(int a,int b){return 0;}//可以，覆盖。	
+B.private int show(int a,int b){return 0;}//不可以，权限不够。
+C.private int show(int a,long b){return 0;}//可以，和父类不是一个函数。没有覆盖，相当于重载。
+D.public short show(int a,int b){return 0;}//不可以，因为该函数不可以和给定函数出现在同一类中，或者子父类中。
+E.static int show(int a,int b){return 0;}//不可以，静态只能覆盖静态。
+
+--------------------------------------------------
+写出程序结果：  
+class Fu
+{
+	int num=4;
+	void show()
+	{
+		System.out.println("showFu");
+	}
+}
+class Zi extends Fu
+{
+	int num=5;
+	void show()
+	{
+		System.out.println("showZi");
+	}
+}
+class T
+{
+	public static void main(String[] args)
+	{
+		Fu f=new Zi();
+		Zi z=new Zi();
+		System.out.println(f.num); 
+		System.out.println(z.num); 
+		f.show(); 
+		z.show(); 	
+	}
+}
+
+4
+5
+showZi
+showZi
+
+
+--------------------------------------------------
+写出程序结果
+class Super
+{
+	int i=0;	
+	public Super(String s)
+	{
+		i=1;	
+	}
+}
+class Demo extends Super
+{
+	public Demo(String s)
+	{
+		
+		i=2;			
+	}
+	public static void main(String[] args)
+	{
+		Demo d=new Demo("yes");
+		System.out.println(d.i);
+	}
+}
+//编译失败，因为父类中缺少空参数的构造函数。
+//或者子类应该通过super语句指定要调用的父类中的构造函数。
+
+--------------------------------------------------
+写出程序结果
+class Super
+{
+	public int get(){return 4;}
+}
+class Demo15 extends Super
+{
+	public long get(){return 5;}			
+	public static void main(String[] args)
+	{
+		Super s=new Demo15();
+		System.out.println(s.get());
+	}
+}
+
+
+编译失败，因为子类父类中的get方法没有覆盖。但是子类调用时候不能明确返回的值是什么类型。
+所以这样的函数不可以存在子父类中。
+
+--------------------------------------------------
+继承时候类的执行顺序问题,一般都是选择题,问你将会打印出什么?
+答:父类：
+package test;
+public class  FatherClass
+{
+    public FatherClass()
+ {
+  System.out.println("FatherClass Create");
+ }
+}
+子类:
+package test;
+import test.FatherClass;
+public class  ChildClass extends FatherClass
+{
+ public ChildClass()
+ {
+  System.out.println("ChildClass Create");
+ }
+ public static void main(String[] args) 
+ {
+  FatherClass fc = new FatherClass();
+  ChildClass cc = new ChildClass();
+ }
+}
+当执行如下操作
+C:\>java test.ChildClass
+输出结果为：
+FatherClass Create
+FatherClass Create
+ChildClass Create 
+
+--------------------------------------------------
+public class OuterClass { 
+  private double d1 = 1.0; 
+    //insert code here 
+} 
+You need to insert an inner class declaration at line 3. Which two inner class declarations are 
+valid?(Choose two.) 
+A. class InnerOne{
+     public static double methoda() {return d1;}
+   } 
+B. public class InnerOne{
+     static double methoda() {return d1;}
+   } 
+C. private class InnerOne{
+     double methoda() {return d1;}
+   } 
+D. static class InnerOne{
+     protected double methoda() {return d1;}
+   } 
+E. abstract class InnerOne{
+     public abstract double methoda();
+   } 
+说明如下：
+一.静态内部类可以有静态成员，而非静态内部类则不能有静态成员。 故 A、B 错
+二.静态内部类的非静态成员可以访问外部类的静态变量，而不可访问外部类的非静态变量；return d1 出错。 
+故 D 错
+三.非静态内部类的非静态成员可以访问外部类的非静态变量。 故 C 正确
+四.答案为C、E 
+
+--------------------------------------------------
+1. public class Test {
+2. int x= 12;
+3. public void method(int x) {
+4. x+=x;
+5. System.out.println(x);
+6. }
+7. }
+Given:
+34. Test t = new Test();
+35. t.method(5);
+What is the output from line 5 of the Test class?
+A. 5
+B. 10
+C. 12
+D. 17
+E. 24
+
+--------------------------------------------------

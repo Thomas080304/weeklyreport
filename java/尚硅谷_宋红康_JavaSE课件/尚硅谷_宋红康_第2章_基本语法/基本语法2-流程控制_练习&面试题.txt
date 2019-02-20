@@ -1,0 +1,444 @@
+写出结果。
+class Demo
+{
+	public static void main(String[] args)
+	{
+		int m=0,n=3;
+		if(m>0)
+
+			if(n>2)
+				System.out.println("A");	
+		else
+			System.out.println("B");
+		
+	}
+}
+
+
+//没有结果。
+-------------------------------------------------------
+switch是否能作用在byte上，是否能作用在long上，是否能作用在String上
+答：switch（expr1）中，expr1是一个整数表达式。因此传递给 switch 和 case 语句的参数应该是
+int、 short、 char 或者 byte。long不能作用于swtich.JDK1.7新加入了String类型。
+
+-------------------------------------------------------
+从键盘分别输入年、月、日，判断这一天是当年的第几天。
+public class Test {
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("输入year：");
+		int year = scanner.nextInt();
+		System.out.println("输入month：");
+		int month = scanner.nextInt();
+		System.out.println("输入day：");
+		int day = scanner.nextInt();
+		int sumDay = 0;
+		switch (month) {
+		case 12:
+			sumDay += 30;
+		case 11:
+			sumDay += 31;
+		case 10:
+			sumDay += 30;
+		case 9:
+			sumDay += 31;
+		case 8:
+			sumDay += 31;
+		case 7:
+			sumDay += 30;
+		case 6:
+			sumDay += 31;
+		case 5:
+			sumDay += 30;
+		case 4:
+			sumDay += 31;
+		case 3:
+			if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0)
+				sumDay += 29;
+			else
+				sumDay += 28;
+		case 2:
+			sumDay += 31;
+		case 1:
+			sumDay += day;
+
+		}
+		System.out.println(year + "年" + month + "月" + day + "日是今年的第" + sumDay
+				+ "天");
+	}
+}
+-------------------------------------------------------
+写出结果。
+public class Demo{ 
+	public static void main(String []args){ 
+		int i = 0, j = 5; 
+		tp: for (;;){ 
+			i++; 
+			for(;;){
+				if(i > j--)
+					break tp; 
+			}
+		} 
+		System.out.println("i = " + i + ", j = "+ j); //i=1,j=-1;
+	} 
+}
+-------------------------------------------------------
+1、 输出从1到100之间所有的整数;
+2、 输出从1到100之间所有的奇数;
+3、 输出从1到100之间所有不能被3整除的数;并输出这些整数的和
+
+-------------------------------------------------------
+1)输入长和宽，输出长方形，如：输入4和3, 将输出如下图形
+####
+####
+####
+2)输入高度，输出直角三角形。如：输入4, 将输出如下图形
+#
+##
+###
+####
+3)输入高度，输出倒直角三角形。如：输入4, 将输出如下图形
+####
+###
+##
+#
+
+-------------------------------------------------------
+打印九九乘法表
+
+-------------------------------------------------------
+输入两个正整数m和n，求其最大公约数和最小公倍数
+int m = 12, n = 28;
+//获取m和n的较大值
+int max = (m > n)? m : n;
+//获取m和n的较小值
+int min = (m < n)? m : n;
+
+//求m和n的最大公约数
+for(int i = min;i >= 1;i--){
+	if( m % i == 0 && n % i == 0){
+		System.out.println("m和n的最大公约数是：" + i);
+		break;
+	}
+}
+//求m和n的最小公倍数
+for(int i = max;i <= m * n;i++){
+	if( i % m == 0 && i % n == 0){
+		System.out.println("m和n的最小公倍数是：" + i);
+		break;
+	}
+}
+-------------------------------------------------------
+分别使用if-else if-else语句和switch-case语句
+根据用于指定月份，打印该月份所属的季节。
+//3,4,5 春季 6,7,8 夏季  9,10,11 秋季 12, 1, 2 冬季
+
+[answer]
+if(x==3 || x==4 || x==5)
+	System.out.println(x+"春季");
+else if(x==6 || x==7 || x==8)
+	System.out.println(x+"夏季");
+else if(x==9 || x==10 || x==11)
+	System.out.println(x+"秋季");
+else if(x==12 || x==1 || x==2)
+	System.out.println(x+"冬季");
+else
+	System.out.println(x+"月份不存在");
+
+[第二种]
+if(x>12 || x<1)
+	System.out.println(x+"月份不存在");
+else if(x>=3 && x<=5)
+	System.out.println(x+"春季");
+else if(x>=6 && x<=8)
+	System.out.println(x+"夏季");
+else if(x>=9 && x<=11)
+	System.out.println(x+"秋季");
+else
+	System.out.println(x+"冬季");	
+
+[第3种]
+public static void main(String[] args) {
+int x = 4;
+switch(x){
+	case 3:
+	case 4:
+	case 5:
+		System.out.println(x+"春季");
+		break;
+	
+	case 6:
+	case 7:
+	case 8:
+		System.out.println(x+"夏季");
+		break;
+	case 9:
+	case 10:
+	case 11:
+		System.out.println(x+"秋季");
+		break;
+	case 12:
+	case 1:
+	case 2:
+		System.out.println(x+"冬季");
+		break;
+	default:
+		System.out.println("nono");
+
+}
+
+-------------------------------------------------------
+已知学生成绩以100分为满分，共分5个等级：A,B,C,D,E。
+   90～100为等级A，80～89为等级B，70～79为等级C，
+   60～69为等级D，0～59为等级E。
+   要求定义一个成绩变量，当成绩变化时，可直接知道该成绩对应的等级。
+   例如：当成绩为100时，该学生的等级时A。
+
+class LevelDemo{
+	//定义一功能，通过给定分数，获取该分数对应的等级。
+	public static void main(String[] args){
+		int num = 89;
+		if(num>=90 && num<=100)
+			System.out.println("level = A");
+		else if(num>=80 && num<=89)
+			System.out.println("level = B");
+		else if(num>=70 && num<=79)
+			System.out.println("level = C");
+		else if(num>=60 && num<=69)
+			System.out.println("level = D");
+		else
+			System.out.println("level = E");
+		
+	}
+	
+}
+
+-------------------------------------------------------
+1）打印1~100之间 6的倍数的个数。
+2）求出1～100之间，既是3又是7的倍数的自然数出现的次数？
+
+[answer1]
+public static void main(String[] args) {
+	int count = 0;
+	for(int x=1; x<=100; x++){			
+		if(x%6==0)
+			//System.out.println("x="+x);
+			count++;
+	}
+	System.out.println("count="+count);
+
+	/*
+	计数器思想。
+	通过一个变量记录住数据的状态变化。
+	*/
+}
+[answer2]
+
+-------------------------------------------------------
+求调和级数中从第多少项开始值大于10，调和级数的第n项形式为：1+1/2+1/3+…+1/n
+(略)
+-------------------------------------------------------
+3000米长的绳子，每天减一半。问多少天这个绳子会小于5米？不考虑小数。
+[answer]
+public static void main(String[] args){
+	int day = 0;
+	for(int x=3000; x>=5; x/=2){
+		day++;
+	}
+	System.out.println("day="+day);
+	/*
+	方法二：
+	day = 0;
+	for(int x=3000; x>=5; day++)
+	{
+		x = x/2;
+	}
+	System.out.println(day);
+	*/
+}
+
+-------------------------------------------------------
+编写程序，判断给定的某个年份是否是闰年。
+闰年的判断规则如下：
+      （1）若某个年份能被4整除但不能被100整除，则是闰年。
+      （2）若某个年份能被400整除，则也是闰年。
+
+if((year % 4 ==0 && year % 100 != 0) || year % 400 == 0){}
+-------------------------------------------------------
+利用程序输出如下图形:
+   *
+   * * *
+   * * * * *
+   * * * * * * *
+   * * * * *
+   * * *
+   *
+for (int i = 0; i < 7; i++) {
+	if(i < 4){
+		for (int j = 0; j < 2 * i + 1; j++) {
+		System.out.print("* ");
+	}
+	System.out.println();
+	}else{
+		for (int k = 0; k < 13 - 2 * i; k++) {
+		System.out.print("* ");
+	}
+	System.out.println();
+	}
+}
+-------------------------------------------------------
+【拓展】
+打印如下图形
+    *
+   * *
+  * * *
+ * * * *
+* * * * *
+ * * * *
+  * * *
+   * *
+    *
+//上半部分
+for(int i = 0;i < 5;i++){
+	//输出“-”
+	for(int j = 0;j < 4-i;j++){
+		System.out.print(" ");
+	}
+
+	//输出“* ”
+	for(int k = 0;k < i+1;k++){
+		System.out.print("* ");
+	}
+	System.out.println();
+}
+//下半部分
+for(int i = 0;i < 4;i++){
+	for(int j = 0;j < i+1;j++){
+		System.out.print(" ");
+	}
+	for(int k = 0;k < 4-i;k++){
+		System.out.print("* ");
+	}
+	System.out.println();
+
+}
+-------------------------------------------------------
+要求用户输入两个数a和b，如果a能被b整除或者a加b大于1000，则输出a；否则输出b。
+
+-------------------------------------------------------
+一个数如果恰好等于它的因子之和，这个数就称为"完数"。（因子：除去这个数本身正的约数）
+例如6=1＋2＋3.编程 找出1000以内的所有完数
+public class WanShu {
+	static int count;
+	public static void main(String[] args) {
+		int factor=0;
+		for (int i = 1; i <= 1000; i++) {
+			for (int j = 1; j < i; j++) {
+				if(i%j==0)
+					factor+=j;
+			} 
+			if(factor == i){
+				System.out.println(i);
+				count++;
+			}
+			factor=0;
+		}
+		System.out.println("1-1000之间的完数个数为："+count);
+	}
+}
+
+-------------------------------------------------------
+写一个程序，找出4位数的所有吸血鬼的数字
+例如：1260=21*60
+      1827=21*87
+
+public class Test2 {
+	public static void main(String[] args) {
+		for (int num = 1001; num < 10000; num++) {
+			math(num);
+		}
+	}
+
+	public static void math(int num) {
+		int[] temp1 = new int[2]; 
+		int[] temp2 = new int[2]; 
+
+		int a = num / 1000;
+		int b = num / 100 % 10;
+		int c = num / 10 % 10;
+		int d = num % 10;
+		int[] data = { a, b, c, d };
+		for(int i = 0;i<data.length;i++){
+			for(int j = 0;j < data.length;j++){
+				if(i == j){
+					continue;
+				}
+				temp1[0] = data[i];
+				temp1[1] = data[j];
+				for(int m = 0;m<data.length;m++){
+					if(m != i && m != j){
+						temp2[0] = data[m];
+						for(int n = 0;n<data.length;n++){
+							if( n != i && n != j && n != m){
+								temp2[1] = data[n];
+								multi(data,temp1,temp2);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	public static int toInt(int[] temp){
+		int m = 0;
+		int[] temp1 = new int[temp.length];
+		for(int i = 0;i < temp.length;i++){
+			temp1[i] = temp[i]*(int)Math.pow(10, temp.length-1-i);
+		}
+		for(int i = 0;i < temp1.length;i++){
+			m+=temp1[i];
+		}
+		return m;
+	}
+	public static void multi(int[] temp ,int[] temp1,int[] temp2){
+		int i = toInt(temp1);
+		int j = toInt(temp2);
+		int k = toInt(temp);
+		if(k == i*j){
+			System.out.println(k + "=" + i + "*" + j);
+		}
+	}
+}
+
+-------------------------------------------------------
+/*
+输出所有的水仙花数，所谓水仙花数是指一个3位数，其各个位上数字立方和等于其本身。
+例如： 153 = 1*1*1 + 3*3*3 + 5*5*5 
+
+*/
+class ShuiXianHua{
+	public static void main(String[] args){
+		for(int i = 100;i < 1000;i++){//实现所有的三位数的一个遍历
+			int j1 = 0;
+			int j2 = 0;
+			int j3 = 0;
+			j1 = i / 100;//百位
+			j2 = (i - 100*j1) / 10;//十位
+			j3 = i - 100*j1 - 10*j2;//个位
+
+			if( i == j1*j1*j1 + j2*j2*j2 + j3*j3*j3){
+				System.out.println("此数值为满足条件的水仙花数:" + i);
+			}
+		}
+	}
+}
+
+-------------------------------------------------------
+在JAVA中，如何跳出当前的多重嵌套循环？
+答：用break; return 方法。
+
+-------------------------------------------------------
+
+-------------------------------------------------------
+
+-------------------------------------------------------

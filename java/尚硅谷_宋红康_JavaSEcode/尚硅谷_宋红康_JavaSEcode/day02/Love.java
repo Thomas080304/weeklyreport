@@ -1,0 +1,26 @@
+public class Love {
+
+	public static void main(String[] args) {
+		/*
+		System.out.println(
+				"  *"+"\t"+"\t"+"\t"+" *"+
+				'\n'+"*    "+"*"+"   "+"I LOVE YOU    "+"*"+"    *"+
+				'\n'+"  *"+"\t"+"\t"+"\t"+"  *"+
+				'\n'+"   *"+"\t"+"\t"+"\t"+"*"+
+				'\n'+"    *"+"\t"+"\t"+"      *"+
+				'\n'+"     *"+"\t"+"\t"+"     *"+
+				'\n'+"\t*"+"\t"+"  *"+
+				'\n'+"\t"+"     *"
+				);
+		*/
+		System.out.println('*' + '\t' + '*');
+		char c1 = '*';
+		char c2 = '\t';
+
+		int i = c1;
+		System.out.println((int)c1);
+		System.out.println((int)c2);
+		System.out.println("*" + "\t" + "*");
+	}
+
+}
